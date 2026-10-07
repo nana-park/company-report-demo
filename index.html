@@ -9,8 +9,9 @@
 <style>
 
 @font-face { font-family:'Pretendard'; font-style:normal; font-weight:100 900; font-display:swap; src:url('assets/fonts/PretendardVariable.woff2') format('woff2'); }
-.back-link { display:inline-flex; align-items:center; gap:8px; min-height:44px; margin:0 0 20px; font-size:13px; font-weight:500; color:var(--muted); text-decoration:none; }
-.back-link svg { flex:none; width:14px; height:14px; }
+.back-link { display:inline-flex; align-items:center; gap:8px; min-height:44px; margin:0 0 20px; font-size:13px; line-height:14px; font-weight:500; color:var(--muted); text-decoration:none; }
+.back-link svg { display:block; flex:0 0 14px; width:14px; height:14px; }
+.back-link span { display:block; line-height:14px; }
 .back-link:hover { color:var(--heading); text-decoration:underline; }
 @media print { .back-link { display:none!important; } }
 /* Portfolio source: breadme 7a029aaf, active HomeExperience / Contact Domain
@@ -171,7 +172,9 @@ tbody tr:last-child>* { border-bottom: 0; }
 .workspace .subtitle { margin:16px 0 0; }
 .demo-note { margin-top:12px; color:var(--muted); font-size:11px; }
 .company-sort { display:flex; align-items:center; justify-content:flex-end; gap:8px; margin-bottom:16px; color:var(--muted); font-size:12px; }
-.company-sort select { min-height:44px; padding:8px 12px; border:1px solid var(--line); border-radius:8px; background:white; color:var(--heading); font:inherit; }
+.sort-control { position:relative; display:inline-flex; }
+.sort-control svg { position:absolute; right:12px; top:50%; transform:translateY(-50%); display:block; width:14px; height:14px; pointer-events:none; color:var(--heading); }
+.company-sort select { appearance:none; -webkit-appearance:none; height:36px; min-height:36px; padding:0 36px 0 12px; border:1px solid var(--line); border-radius:8px; background:white; color:var(--heading); font:inherit; line-height:1.2; }
 .company-list { margin:0; padding:0; list-style:none; display:grid; gap:16px; }
 .company-entry { padding:0; margin:0; border:1px solid var(--line); border-radius:8px; box-shadow:var(--shadow); }
 .company-card { display:block; padding:32px; text-decoration:none; border-radius:8px; }
@@ -181,7 +184,7 @@ tbody tr:last-child>* { border-bottom: 0; }
 .company-date { display:block; color:var(--muted); font-size:11px; margin-top:12px; }
 .empty-index { padding:24px; border:1px solid var(--line); border-radius:8px; color:var(--muted); }
 @media(max-width:1023px) { .company-card { padding:24px; } }
-@media(max-width:767px) { .workspace h1 { font-size:28px; }.company-name { font-size:20px; } }
+@media(max-width:767px) { .company-sort select { height:44px; min-height:44px; } .workspace h1 { font-size:28px; }.company-name { font-size:20px; } }
 @media print { .company-sort { display:none; }.company-entry { break-inside:avoid; box-shadow:none; } }
 </style>
 </head>
@@ -190,7 +193,7 @@ tbody tr:last-child>* { border-bottom: 0; }
 <main class="report-shell workspace" id="workspace-content" tabindex="-1">
 
 <header class="cover"><h1>Career Workspace</h1><p class="subtitle">기업을 선택해 지원 자료를 확인하세요.</p><p class="demo-note">가상 기업 자료를 사용한 데모입니다.</p></header>
-<div class="company-sort"><label for="company-sort">정렬</label><select id="company-sort" aria-controls="company-list" disabled><option value="recent" selected>최근 조사순</option><option value="name">가나다순</option></select></div>
+<div class="company-sort"><label for="company-sort">정렬</label><span class="sort-control"><select id="company-sort" aria-controls="company-list" disabled><option value="recent" selected>최근 조사순</option><option value="name">가나다순</option></select><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4 6 4 4 4-4"/></svg></span></div>
 <ul id="company-list" class="company-list"><li class="company-entry" data-company-id="company-모루플랫폼-가상-기업-1ff531140fe8" data-company-name="모루플랫폼 (가상 기업)" data-latest-as-of="2026-10-07" data-recent-order="0"><a class="company-card" href="company-%EB%AA%A8%EB%A3%A8%ED%94%8C%EB%9E%AB%ED%8F%BC-%EA%B0%80%EC%83%81-%EA%B8%B0%EC%97%85-1ff531140fe8/index.html"><span class="company-name">모루플랫폼 (가상 기업)</span><span class="company-scope">가상 국내 법인 · 단일 사업 기준</span><span class="company-date">최근 조사 기준일 2026-10-07 · 가상 예시</span></a></li><li class="company-entry" data-company-id="company-해온클라우드-가상-기업-9f0d3cb083c5" data-company-name="해온클라우드 (가상 기업)" data-latest-as-of="2026-10-07" data-recent-order="1"><a class="company-card" href="company-%ED%95%B4%EC%98%A8%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EA%B0%80%EC%83%81-%EA%B8%B0%EC%97%85-9f0d3cb083c5/index.html"><span class="company-name">해온클라우드 (가상 기업)</span><span class="company-scope">본사 및 가상 해외 자회사 · 연결 기준</span><span class="company-date">최근 조사 기준일 2026-10-07 · 가상 예시</span></a></li></ul>
 </main>
 <script>

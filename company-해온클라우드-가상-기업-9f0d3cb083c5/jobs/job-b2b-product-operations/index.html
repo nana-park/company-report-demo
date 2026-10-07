@@ -9,8 +9,9 @@
 <style>
 
 @font-face { font-family:'Pretendard'; font-style:normal; font-weight:100 900; font-display:swap; src:url('../../../assets/fonts/PretendardVariable.woff2') format('woff2'); }
-.back-link { display:inline-flex; align-items:center; gap:8px; min-height:44px; margin:0 0 20px; font-size:13px; font-weight:500; color:var(--muted); text-decoration:none; }
-.back-link svg { flex:none; width:14px; height:14px; }
+.back-link { display:inline-flex; align-items:center; gap:8px; min-height:44px; margin:0 0 20px; font-size:13px; line-height:14px; font-weight:500; color:var(--muted); text-decoration:none; }
+.back-link svg { display:block; flex:0 0 14px; width:14px; height:14px; }
+.back-link span { display:block; line-height:14px; }
 .back-link:hover { color:var(--heading); text-decoration:underline; }
 @media print { .back-link { display:none!important; } }
 /* Portfolio source: breadme 7a029aaf, active HomeExperience / Contact Domain
@@ -175,13 +176,6 @@ tbody tr:last-child>* { border-bottom: 0; }
 .job-nav a { background:#18181b; color:white; font-weight:500; }
 .job-nav button:disabled { color:var(--muted); background:var(--surface); opacity:1; }
 .job-nav small { font-size:10px; }
-.job-workspace h2 { font-size:22px; margin-bottom:16px; }
-.company-reports { padding:0; margin:0; list-style:none; display:grid; gap:16px; }
-.company-report { padding:0; margin:0; border:1px solid var(--line); border-radius:8px; box-shadow:var(--shadow); }
-.report-link { display:block; padding:24px; border-radius:8px; text-decoration:none; }
-.report-link:hover { background:var(--surface); }
-.report-date { display:block; font-size:17px; font-weight:500; line-height:1.3; }
-.report-version { display:block; margin-top:8px; font-size:11px; color:var(--muted); }
 .empty-research { padding:24px; border:1px solid var(--line); border-radius:8px; color:var(--muted); }
 @media(max-width:767px) { .job-workspace h1 { font-size:28px; }.job-nav { gap:8px; }.job-nav a,.job-nav button { padding:8px 14px; } }
 @media print { .job-nav { display:none; }.company-report { break-inside:avoid; box-shadow:none; } }
@@ -193,8 +187,8 @@ tbody tr:last-child>* { border-bottom: 0; }
 <a class="back-link" href="../../index.html" aria-label="해온클라우드 (가상 기업) 공고 목록으로 돌아가기"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m10 3-5 5 5 5"/></svg><span>뒤로</span></a>
 <header class="cover"><h1>B2B 제품 운영 매니저 (가상 직무)</h1><p class="subtitle">해온클라우드 (가상 기업)</p></header>
 
-<nav class="job-nav" aria-label="지원 직무 분석 자료"><a href="#research" aria-current="page">Company Research</a><button type="button" disabled aria-disabled="true">JD analysis <small>구현 전</small></button><button type="button" disabled aria-disabled="true">Essay Question <small>구현 전</small></button></nav>
-<section id="research" aria-labelledby="research-title"><h2 id="research-title">Company Research</h2><ol class="company-reports"><li class="company-report"><a class="report-link" href="../../../company-%ED%95%B4%EC%98%A8%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EA%B0%80%EC%83%81-%EA%B8%B0%EC%97%85-9f0d3cb083c5/2026-10-07/report-5bb3777b3c8c/company-report.html"><span class="report-date">기준일 2026-10-07 · 가상 예시</span><span class="report-version">report-5bb3777b3c8c</span></a></li><li class="company-report"><a class="report-link" href="../../../company-%ED%95%B4%EC%98%A8%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EA%B0%80%EC%83%81-%EA%B8%B0%EC%97%85-9f0d3cb083c5/2026-10-07/report-97a5a3ea6e13/company-report.html"><span class="report-date">기준일 2026-10-07 · 가상 예시</span><span class="report-version">report-97a5a3ea6e13</span></a></li><li class="company-report"><a class="report-link" href="../../../company-%ED%95%B4%EC%98%A8%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EA%B0%80%EC%83%81-%EA%B8%B0%EC%97%85-9f0d3cb083c5/2026-10-07/report-ac4bfbe03726/company-report.html"><span class="report-date">기준일 2026-10-07 · 가상 예시</span><span class="report-version">report-ac4bfbe03726</span></a></li><li class="company-report"><a class="report-link" href="../../../company-%ED%95%B4%EC%98%A8%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EA%B0%80%EC%83%81-%EA%B8%B0%EC%97%85-9f0d3cb083c5/2026-10-07/report-d192a7582137/company-report.html"><span class="report-date">기준일 2026-10-07 · 가상 예시</span><span class="report-version">report-d192a7582137</span></a></li></ol></section>
+<nav class="job-nav" aria-label="지원 직무 분석 자료"><a href="../../../company-%ED%95%B4%EC%98%A8%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EA%B0%80%EC%83%81-%EA%B8%B0%EC%97%85-9f0d3cb083c5/2026-10-07/report-5bb3777b3c8c/company-report.html">Company Research</a><button type="button" disabled aria-disabled="true">JD analysis <small>구현 전</small></button><button type="button" disabled aria-disabled="true">Essay Question <small>구현 전</small></button></nav>
+
 </main>
 </body>
 </html>
