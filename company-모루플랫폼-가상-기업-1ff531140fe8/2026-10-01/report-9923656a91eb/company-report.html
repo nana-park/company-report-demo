@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="ko">
+<!-- offline-company-report:bundle:v1 -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>모루플랫폼 기업 조사</title>
+<style>
+/* Portfolio source: breadme 7a029aaf, active HomeExperience / Contact Domain
+   cards. Report tabs, tables and chart palette are documented adaptations. */
+:root {
+  --page: #ffffff;
+  --surface: #f9fafb;
+  --ink: #1a1a1a;
+  --heading: #18181b;
+  --body: #27272a;
+  --muted: #71717a;
+  --label: #a1a1aa;
+  --line: #e5e7eb;
+  --focus: #145dcc;
+  --accent: #d4a574;
+  --font-sans: 'Pretendard', 'Inter', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+  --card-radius: 8px;
+  --card-padding: 32px;
+  --shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: auto; scroll-padding-top: 88px; }
+body { margin: 0; min-width: 0; background: var(--page); color: var(--body); font: 14px/1.65 var(--font-sans); word-break: keep-all; overflow-wrap: anywhere; }
+a { color: inherit; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+/* Enabled actions use a hand cursor; text inputs and passive cards keep defaults. */
+a[href]:not([aria-disabled="true"]), button:enabled:not([aria-disabled="true"]),
+select:enabled:not([aria-disabled="true"]), [role="tab"]:not([aria-disabled="true"]),
+input[type="button"]:enabled, input[type="submit"]:enabled, input[type="reset"]:enabled { cursor: pointer; }
+button:disabled, select:disabled, input:disabled, [aria-disabled="true"] { cursor: default; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
+.skip-link { position: absolute; top: -100px; left: 16px; padding: 10px 16px; color: white; background: var(--ink); border-radius: 4px; z-index: 30; }
+.skip-link:focus { top: 16px; }
+.report-shell { max-width: 1120px; margin: 0 auto; padding: 48px 40px 64px; }
+.company-list-link { display:inline-flex; min-height:36px; align-items:center; margin:0 0 12px; color:var(--muted); font-size:12px; text-decoration:none; }
+.company-list-link:hover { color:var(--heading); text-decoration:underline; }
+.cover { padding: 0 0 24px; border-bottom: 1px solid var(--line); }
+.eyebrow, .section-kicker { margin: 0 0 12px; color: var(--label); font-size: 10px; font-weight: 500; letter-spacing: .2em; line-height: 1.5; text-transform: uppercase; }
+h1,h2,h3,h4 { color: var(--heading); font-family: var(--font-sans); letter-spacing: -.025em; }
+h1 { font-size: 32px; font-weight: 500; line-height: 1.3; margin: 0; }
+h2 { font-size: 28px; font-weight: 500; line-height: 1.5; margin: 0 0 24px; }
+h3 { font-size: 22px; font-weight: 400; line-height: 1.5; margin: 28px 0 12px; }
+h4 { font-size: 17px; font-weight: 500; line-height: 1.3; margin: 20px 0 8px; }
+.subtitle { max-width: 800px; color: var(--muted); font-size: 14px; font-weight: 300; line-height: 1.5; margin: 12px 0 24px; }
+.report-meta { display: grid; grid-template-columns: 1.1fr 1fr .6fr; gap: 24px; margin: 0; }
+.report-meta div { min-width: 0; }
+.report-meta dt { color: var(--label); font-size: 10px; font-weight: 500; letter-spacing: .05em; margin-bottom: 4px; }
+.report-identity { font-size:10px; color:var(--muted); margin:16px 0 0; overflow-wrap:anywhere; }
+.report-meta dd { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.synthetic-notice { padding: 12px 16px; margin: 20px 0; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; color: #52525b; font-size: 12px; }
+.report-section { background: white; border: 1px solid var(--line); border-radius: var(--card-radius); padding: var(--card-padding); margin: 24px 0; box-shadow: var(--shadow); }
+.report-section[hidden] { display: none; }
+.report-summary { padding: 0 0 24px; margin: 0 0 24px; border-bottom: 1px solid var(--line); }
+.report-summary h3 { margin-top: 0; }
+p { margin: 8px 0; }
+ul,ol { padding-left: 20px; }
+li { margin: 4px 0; padding-left: 2px; }
+.block { margin: 16px 0; }
+.block-heading { margin-bottom: 8px; }
+.block-paragraph p { white-space: pre-line; }
+.context { color: var(--muted); font-size: 11px; line-height: 1.6; margin: 8px 0 0; }
+.context b { font-weight: 500; }
+.citations { display: inline-flex; gap: 4px; vertical-align: baseline; white-space: nowrap; }
+.citations a { font-size: 11px; font-weight: 500; color: #52525b; text-decoration: none; }
+.citations a:hover { text-decoration: underline; }
+/* Reuse the active portfolio project-detail pill-tab style; add report hit areas. */
+.tab-nav { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; gap: 16px; margin: 0 0 24px; padding: 12px 0; background: #fff; border-bottom: 1px solid var(--line); }
+.tab-nav a { display: inline-flex; flex: 1 1 160px; min-height: 44px; align-items: center; justify-content: center; padding: 8px 20px; border: 1px solid transparent; border-radius: 999px; color: #71717a; background: white; font-size: 14px; font-weight: 600; letter-spacing: -.025em; line-height: 1.5; text-decoration: none; }
+.tab-nav a:hover { background: #f3f4f6; color: #18181b; }
+.tab-nav a[aria-selected="true"] { background: #000000; border-color: #000000; color: white; }
+.tab-nav a[aria-selected="true"]:hover { background: #2a2a2a; }
+.metrics { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(200px,100%),1fr)); gap: 24px; }
+.metric { background: white; border: 1px solid var(--line); border-radius: 8px; padding: 24px; box-shadow: var(--shadow); }
+.metric-label { margin: 0; color: var(--muted); font-size: 12px; font-weight: 500; line-height: 1.5; }
+.metric-value { margin: 8px 0; color: var(--ink); font-size: 28px; font-weight: 500; letter-spacing: -.025em; line-height: 1.3; }
+.metric-value span { margin-left: 4px; font-size: 12px; font-weight: 400; letter-spacing: 0; }
+.metric-detail { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.metric .context { font-size: 10px; }
+.table-scroll { max-width: 100%; overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; background: white; }
+table { width: 100%; min-width: 480px; border-collapse: collapse; text-align: left; font-size: 13px; line-height: 1.6; }
+caption { padding: 12px 16px; text-align: left; color: var(--muted); font-size: 12px; border-bottom: 1px solid var(--line); }
+thead { background: var(--surface); color: var(--ink); }
+th,td { padding: 12px 16px; vertical-align: top; border-bottom: 1px solid var(--line); }
+th { font-weight: 500; }
+tbody th { color: var(--ink); }
+tbody tr:last-child>* { border-bottom: 0; }
+.chart { margin: 24px 0 16px; padding: 24px; background: white; border: 1px solid var(--line); border-radius: 8px; }
+.chart figcaption { color: var(--ink); font-size: 14px; font-weight: 500; }
+.unit { float: right; margin-left: 12px; color: var(--muted); font-size: 11px; font-weight: 400; }
+.chart svg { display: block; width: 100%; height: auto; max-width: 850px; margin: 16px auto; overflow: visible; }
+.chart text { font-family: var(--font-sans); font-size: 13px; fill: var(--body); }
+.chart .chart-label,.chart .missing { font-size: 12px; }
+.chart .missing { fill: var(--muted); }
+.axis { stroke: #d4d4d8; stroke-width: 1; }
+.bar-0,.dot { fill: #1a1a1a; }
+.bar-1 { fill: #71717a; }
+.bar-2 { fill: #d4a574; }
+.trend,.zero { stroke: #1a1a1a; stroke-width: 3; }
+.chart .table-scroll { margin-bottom: 0; }
+.chart-data { font-size: 12px; }
+.chart-data th,.chart-data td { padding: 8px 12px; }
+.chart-data .context { margin: 0; }
+.chart-data caption { font-size: 11px; }
+.empty-chart { padding: 20px; color: var(--muted); background: var(--surface); border: 1px solid var(--line); border-radius: 4px; font-size: 12px; text-align: center; }
+.swot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.swot { padding: 24px; border: 1px solid var(--line); border-radius: 8px; background: white; box-shadow: var(--shadow); }
+.swot h4 { margin: 0 0 12px; font-size: 17px; font-weight: 500; }
+.swot ul { font-size: 13px; line-height: 1.6; margin: 0; }
+.sources { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); }
+.sources h2 { font-size: 24px; }
+.source-list { list-style: none; padding: 0; }
+.source-list>li { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 13px; scroll-margin-top: 16px; }
+.source-number { min-width: 28px; color: var(--muted); font-weight: 500; }
+.source-list p { margin: 4px 0; font-size: 11px; color: var(--muted); }
+.source-url { font-size: 11px; color: var(--muted); word-break: break-all; }
+.report-footer { margin-top: 24px; color: var(--muted); font-size: 11px; }
+.donut-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 12px; font-size: 12px; }
+.legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 4px; }
+.legend-0 { background: #1a1a1a; }.legend-1 { background: #71717a; }.legend-2 { background: #d4a574; }.legend-3 { background: #a1a1aa; }
+@media(max-width:1023px) { :root { --card-padding:24px; } .report-shell { padding:32px 24px 48px; } }
+@media(max-width:767px) {
+  .report-shell { padding:24px 20px 40px; }
+  h1 { font-size:28px; } h2 { font-size:24px; } h3 { font-size:20px; }
+  .subtitle { font-size:13px; }
+  .report-meta { grid-template-columns:1fr; gap:12px; }
+  .report-section { margin:20px 0; }
+  .tab-nav { gap:8px; margin-top:0; }
+  html { scroll-padding-top:132px; }
+  .tab-nav a { flex-basis:calc(50% - 8px); padding:8px 20px; font-size:13px; }
+  .metrics,.swot-grid { grid-template-columns:minmax(0,1fr); gap:16px; }
+  .metric,.swot { padding:24px; }
+  .chart { padding:16px; }
+  .chart .unit { float:none; display:block; margin:4px 0; }
+}
+@media print {
+  @page { size:A4; margin:16mm; }
+  body { background:white; font-size:10pt; line-height:1.6; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .report-shell { max-width:none; padding:0; }
+  h1 { font-size:24pt; } h2 { font-size:18pt; } h3 { font-size:14pt; }
+  .report-section { padding:20px 0; margin:20px 0; border:0; border-top:1px solid var(--line); border-radius:0; box-shadow:none; }
+  .report-section[hidden] { display:block!important; }
+  .tab-nav,.skip-link,.company-list-link { display:none!important; }
+  .report-meta { grid-template-columns:1.2fr 1fr .7fr; }
+  .metrics { grid-template-columns:repeat(3,1fr); gap:12px; }
+  .metric { padding:14px; box-shadow:none; }.metric-value { font-size:22pt; }
+  .swot-grid { grid-template-columns:1fr 1fr; gap:12px; }.swot { box-shadow:none; }
+  .table-scroll { overflow:visible; border:0; } table { min-width:0!important; table-layout:fixed; font-size:8.5pt; }
+  thead { display:table-header-group; } th,td { padding:8px; overflow-wrap:anywhere; }
+  tr,.metric,.swot { break-inside:avoid; } h2,h3,h4,figcaption { break-after:avoid; }
+  p { orphans:3; widows:3; }.chart { padding:14px; break-inside:avoid; }.chart svg { max-height:230px; }
+  .chart-data,.context { font-size:8pt; }.sources { break-before:page; }.source-list>li { break-inside:avoid; }
+  .report-footer { font-size:8pt; } a { text-decoration:none; color:inherit; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#report-content">본문으로 바로 가기</a>
+<div class="report-shell">
+<nav aria-label="보고서 이동"><a class="company-list-link" href="../../../index.html">Home</a> · <a class="company-list-link" href="../../../analysis/company/index.html">Company Research</a></nav>
+<nav class="tab-nav" aria-label="보고서 상세 분석"><a id="tab-basic" href="#basic" data-tab>기본 조사</a><a id="tab-ai" href="#ai" data-tab>AI 분석</a><a id="tab-global" href="#global" data-tab>글로벌 분석</a><a id="tab-hiring" href="#hiring" data-tab>채용 전략</a></nav>
+<header class="cover">
+<p class="eyebrow">COMPANY RESEARCH · 모루플랫폼 (가상 기업)</p>
+<h1>모루플랫폼 기업 조사</h1>
+<dl class="report-meta"><div><dt>회사</dt><dd>모루플랫폼 (가상 기업)</dd></div><div><dt>지원 직무</dt><dd>사업자 플랫폼 PM (가상 직무)</dd></div><div><dt>기준일</dt><dd>2026-10-01</dd></div></dl>
+</header>
+<p class="synthetic-notice">가상 예시 · 이 회사, 수치, 사건과 인용 자료는 형식 검증을 위한 합성 데이터입니다. example.com 링크는 실제 근거가 아닙니다.</p>
+<main id="report-content" tabindex="-1">
+<div class="report-panels"><section id="basic" class="report-section" aria-labelledby="tab-basic" data-panel><div class="section-kicker">BUSINESS</div><h2 id="heading-basic">기본 조사</h2><section id="summary" class="report-summary" aria-labelledby="heading-summary"><div class="section-kicker">SUMMARY</div><h3 id="heading-summary">핵심 요약</h3><p class="subtitle">기업 목록 이동을 확인하는 두 번째 합성 예시 · 실제 기업 및 조사 결과가 아닙니다.</p><p class="context">조사 범위: 가상 국내 법인 · 단일 사업 기준</p><p class="report-identity">기업 ID: company-모루플랫폼-가상-기업-1ff531140fe8 · 보고서 ID: report-9923656a91eb</p><div class="block block-paragraph"><p>모루플랫폼은 소규모 매장의 예약과 고객 문의를 연결하는 가상의 소프트웨어 기업이다. 이 예시는 회사 간 이동과 파일 분리를 보여주기 위해 작성한 합성 데이터다. 첫 번째 예시와 달리 국내 사업자 운영 도구를 중심으로 설명한다.</p><div class="context"> <span class="citations"><a href="#source-demo-moru" aria-label="출처 1">[1]</a></span></div></div><div class="block block-paragraph"><p>분석의 중심은 신규 기능 수보다 매장 직원이 실제 업무에 사용하는 흐름이다. 해외 확장과 AI 기능은 아직 검증 단계라는 가상 설정이며, 현재 매출 성과와 합산하지 않는다.</p><div class="context"> <span class="citations"><a href="#source-demo-moru" aria-label="출처 1">[1]</a></span></div></div></section><div class="block block-heading"><h3>1. 사업 내용</h3></div><div class="block block-paragraph"><p>주요 고객은 예약을 받는 소규모 매장이다. 매장은 월 구독료를 지불하고 예약 현황, 고객 문의, 영업 시간을 관리한다. 고객 요청과 실제 매장 운영을 일치시키는 것이 제품의 목적이라는 가상 설정이다.</p><div class="context"> <span class="citations"><a href="#source-demo-moru" aria-label="출처 1">[1]</a></span></div></div><div class="block block-metrics"><div class="metrics"><div class="metric"><p class="metric-label">2025년 가상 매출</p><p class="metric-value">120<span>억원</span></p><div class="context"> <span class="citations"><a href="#source-demo-moru" aria-label="출처 1">[1]</a></span></div></div><div class="metric"><p class="metric-label">2025년 가상 영업이익</p><p class="metric-value">8<span>억원</span></p><div class="context"> <span class="citations"><a href="#source-demo-moru" aria-label="출처 1">[1]</a></span></div></div></div></div><div class="block block-heading"><h3>2. 재무 분석</h3></div><div class="block block-table"><div class="table-scroll" tabindex="0" role="region" aria-labelledby="block-basic-4-caption"><table><caption id="block-basic-4-caption">비교 자료</caption><thead><tr><th scope="col">항목 · 가상 수치</th><th scope="col">2023</th><th scope="col">2024</th><th scope="col">2025</th></tr></thead><tbody><tr><th scope="row">매출액 · 억원</th><td>72</td><td>96</td><td>120</td></tr><tr><th scope="row">영업이익 · 억원</th><td>-2</td><td>3</td><td>8</td></tr></tbody></table></div><div class="context"> <span class="citations"><a href="#source-demo-moru" aria-label="출처 1">[1]</a></span></div></div><div class="block block-paragraph"><p>예시에서는 구독 고객 확대와 운영 비용 관리가 동시에 이뤄졌다고 설정했다. 이 수치는 실제 공시에서 가져오지 않았으며, 렌더링과 기업별 데이터 분리 확인에만 사용한다.</p><div class="context"> <span class="citations"><a href="#source-demo-moru" aria-label="출처 1">[1]</a></span></div></div><div class="block block-heading"><h3>3. 경쟁사 및 포지셔닝</h3></div><div class="block block-paragraph"><p>범용 예약 도구와 매장 운영 도구 사이에서 예약 이후의 문의·변경 처리까지 연결하는 방향을 가정한다. 특정 실존 경쟁사에 대한 우열이나 실제 시장점유율을 주장하지 않는다.</p><div class="context"> <span class="citations"><a href="#source-demo-moru" aria-label="출처 1">[1]</a></span></div></div><div class="block block-heading"><h3>4. SWOT</h3></div><div class="block block-swot"><div class="swot-grid"><article class="swot swot-strengths"><h4>강점</h4><ul><li>예약 이후 운영 흐름을 함께 다루는 가상 제품 구성</li></ul></article><article class="swot swot-weaknesses"><h4>약점</h4><ul><li>다양한 업종의 예외를 처리하는 운영 부담</li></ul></article><article class="swot swot-opportunities"><h4>기회</h4><ul><li>매장 업무의 디지털화 수요를 가정</li></ul></article><article class="swot swot-threats"><h4>위협</h4><ul><li>기존 운영 방식 전환에 필요한 학습 비용</li></ul></article></div><div class="context"> <span class="citations"><a href="#source-demo-moru" aria-label="출처 1">[1]</a></span></div></div><div class="block block-heading"><h3>5. 최근 이슈</h3></div><div class="block block-paragraph"><p>가상 기업은 2026년 예약 변경 요청을 분류하는 보조 기능을 시험 중이다. 정식 출시와 유료 도입 성과는 설정하지 않았으므로 미확인으로 남긴다.</p><div class="context"> <span class="citations"><a href="#source-demo-moru" aria-label="출처 1">[1]</a></span></div></div></section><section id="ai" class="report-section" aria-labelledby="tab-ai" data-panel><div class="section-kicker">AI</div><h2 id="heading-ai">AI 분석</h2><div class="block block-heading"><h3>고객 문의 분류 보조</h3></div><div class="block block-paragraph"><p>입력은 고객의 예약 변경 문의이고 결과는 담당 직원에게 제시하는 분류와 답변 초안이다. 직원이 확인한 뒤 고객에게 전달하는 흐름을 가정한다. AI가 예약을 임의로 확정하거나 취소하는 기능은 포함하지 않는다.</p><div class="context"> <span class="citations"><a href="#source-demo-moru" aria-label="출처 1">[1]</a></span></div></div><div class="block block-paragraph"><p>파일럿의 정확도와 비용 절감 효과는 미확인이다. 잘못 분류된 요청을 직원이 수정할 수 있는지와 업무 처리 시간이 실제로 달라지는지를 다음 검증 항목으로 남긴다.</p><div class="context"> <span class="citations"><a href="#source-demo-moru" aria-label="출처 1">[1]</a></span></div></div></section><section id="global" class="report-section" aria-labelledby="tab-global" data-panel><div class="section-kicker">GLOBAL</div><h2 id="heading-global">글로벌 분석</h2><div class="block block-heading"><h3>해외 시장의 확인 범위</h3></div><div class="block block-paragraph"><p>해외 매출이나 현지 법인은 이 가상 설정에서 확인되지 않았다. 일본 진출 가능성 검토를 정식 진출이나 확정 사업계획으로 바꾸지 않는다.</p><div class="context"> <span class="citations"><a href="#source-demo-moru" aria-label="출처 1">[1]</a></span></div></div><div class="block block-paragraph"><p>확장 가능성을 검토한다면 언어 번역뿐 아니라 예약 취소 관행, 현지 결제 및 고객지원 책임을 먼저 확인해야 한다. 이는 분석자의 가정이며 실제 해외 계획은 아니다.</p><div class="context"> <span class="citations"><a href="#source-demo-moru" aria-label="출처 1">[1]</a></span></div></div></section><section id="hiring" class="report-section" aria-labelledby="tab-hiring" data-panel><div class="section-kicker">HIRING</div><h2 id="heading-hiring">채용 전략</h2><div class="block block-heading"><h3>회사와 부서의 과제</h3></div><div class="block block-paragraph"><p>사업자 플랫폼 부서는 예약 정보를 실제 매장 운영과 일치시키는 문제를 다룬다고 가정한다. 업종 공통 기능과 예외 규칙, 직원이 개입할 시점을 구분하는 것이 핵심 과제다.</p><div class="context"> <span class="citations"><a href="#source-demo-moru" aria-label="출처 1">[1]</a></span></div></div><div class="block block-heading"><h3>포지션의 역할</h3></div><div class="block block-paragraph"><p>가상의 플랫폼 PM 역할은 고객 문의와 운영 데이터를 바탕으로 문제를 정의하고 제품·운영 팀의 처리 경계를 조율한다. 특정 지원자의 경험 선정이나 면접 답안은 포함하지 않는다.</p><div class="context"> <span class="citations"><a href="#source-demo-moru" aria-label="출처 1">[1]</a></span></div></div><div class="block block-heading"><h3>공식 인재상</h3></div><div class="block block-paragraph"><p>이 회사는 합성 예시이므로 실제 공식 인재상이나 채용 공고는 없다.</p><div class="context"> <span class="citations"><a href="#source-demo-moru" aria-label="출처 1">[1]</a></span></div></div></section></div>
+<section class="sources" id="sources" aria-labelledby="heading-sources"><p class="section-kicker">REFERENCES</p><h2 id="heading-sources">출처와 확인 범위</h2><ol class="source-list"><li id="source-demo-moru"><span class="source-number">[1]</span><div><a href="https://example.com/moru-demo" rel="noreferrer">모루플랫폼 합성 예시 데이터</a><p>디자인·이동 검증용 가상 자료 · 발행일 2026-10-01 · 위치 실제 조사 근거가 아님</p><span class="source-url">https://example.com/moru-demo</span></div></li></ol></section>
+</main>
+<footer class="report-footer">이 보고서는 입력 JSON의 본문·수치·출처를 보존하는 오프라인 문서입니다. 미확인 수치는 0으로 대체하지 않습니다. 인쇄 또는 PDF 저장 시 모든 분석 영역이 포함됩니다.</footer>
+</div>
+<script>
+(function () {
+  'use strict';
+  var nav = document.querySelector('.tab-nav');
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-tab]'));
+  var panels = tabs.map(function (tab) { return document.getElementById(tab.getAttribute('href').slice(1)); });
+  if (!nav || tabs.length !== 4 || panels.some(function (panel) { return !panel; })) return;
+  function activate(index, focus) {
+    tabs.forEach(function (tab, i) {
+      tab.setAttribute('aria-selected', String(i === index));
+      tab.tabIndex = i === index ? 0 : -1;
+      panels[i].hidden = i !== index;
+    });
+    if (focus) tabs[index].focus();
+  }
+  nav.setAttribute('role', 'tablist');
+  tabs.forEach(function (tab, index) {
+    tab.setAttribute('role', 'tab');
+    tab.setAttribute('aria-controls', panels[index].id);
+    panels[index].setAttribute('role', 'tabpanel');
+    panels[index].tabIndex = 0;
+    tab.addEventListener('click', function (event) {
+      event.preventDefault();
+      activate(index, false);
+      if (window.history && window.history.replaceState) window.history.replaceState(null, '', '#' + panels[index].id);
+    });
+    tab.addEventListener('keydown', function (event) {
+      var next = index;
+      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+      else if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = tabs.length - 1;
+      else if (event.key === ' ' || event.key === 'Enter') next = index;
+      else return;
+      event.preventDefault();
+      activate(next, true);
+    });
+  });
+  function activateHash() {
+    if (window.location.hash === "#summary") { activate(0, false); return; }
+    var index = panels.findIndex(function (panel) { return '#' + panel.id === window.location.hash; });
+    if (index >= 0) activate(index, false);
+  }
+  activate(0, false);
+  activateHash();
+  window.addEventListener('hashchange', activateHash);
+}());
+</script>
+</body>
+</html>
