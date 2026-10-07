@@ -24,6 +24,11 @@ html { scroll-behavior: auto; scroll-padding-top: 88px; }
 body { margin: 0; min-width: 0; background: var(--page); color: var(--body); font: 14px/1.65 var(--font-sans); word-break: keep-all; overflow-wrap: anywhere; }
 a { color: inherit; text-underline-offset: 3px; }
 a:hover { text-decoration-thickness: 2px; }
+/* Enabled actions use a hand cursor; text inputs and passive cards keep defaults. */
+a[href]:not([aria-disabled="true"]), button:enabled:not([aria-disabled="true"]),
+select:enabled:not([aria-disabled="true"]), [role="tab"]:not([aria-disabled="true"]),
+input[type="button"]:enabled, input[type="submit"]:enabled, input[type="reset"]:enabled { cursor: pointer; }
+button:disabled, select:disabled, input:disabled, [aria-disabled="true"] { cursor: default; }
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
 .skip-link { position: absolute; top: -100px; left: 16px; padding: 10px 16px; color: white; background: var(--ink); border-radius: 4px; z-index: 30; }
 .skip-link:focus { top: 16px; }
