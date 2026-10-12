@@ -190,13 +190,15 @@ tbody tr:last-child>* { border-bottom: 0; }
   var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-tab]'));
   var panels = tabs.map(function (tab) { return document.getElementById(tab.getAttribute('href').slice(1)); });
   if (!nav || tabs.length !== 4 || panels.some(function (panel) { return !panel; })) return;
-  function activate(index, focus) {
+  function activate(index, focus, resetScroll) {
     tabs.forEach(function (tab, i) {
       tab.setAttribute('aria-selected', String(i === index));
       tab.tabIndex = i === index ? 0 : -1;
       panels[i].hidden = i !== index;
     });
     if (focus) tabs[index].focus();
+    // Only deliberate tab selection resets reading position; hash/history restoration stays native.
+    if (resetScroll) window.scrollTo(0, 0);
   }
   nav.setAttribute('role', 'tablist');
   tabs.forEach(function (tab, index) {
@@ -206,7 +208,7 @@ tbody tr:last-child>* { border-bottom: 0; }
     panels[index].tabIndex = 0;
     tab.addEventListener('click', function (event) {
       event.preventDefault();
-      activate(index, false);
+      activate(index, false, true);
       if (window.history && window.history.replaceState) window.history.replaceState(null, '', '#' + panels[index].id);
     });
     tab.addEventListener('keydown', function (event) {
@@ -218,7 +220,7 @@ tbody tr:last-child>* { border-bottom: 0; }
       else if (event.key === ' ' || event.key === 'Enter') next = index;
       else return;
       event.preventDefault();
-      activate(next, true);
+      activate(next, true, true);
     });
   });
   function activateHash() {
