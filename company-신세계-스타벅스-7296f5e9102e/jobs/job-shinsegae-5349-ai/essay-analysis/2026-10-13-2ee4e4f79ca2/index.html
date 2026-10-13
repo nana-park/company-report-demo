@@ -16,7 +16,11 @@ a { color:inherit; text-underline-offset:3px; }
 .skip-link { position:absolute; top:-80px; left:20px; padding:10px; background:white; }
 .skip-link:focus { top:8px; }
 .shell { max-width:1040px; margin:auto; padding:32px 32px 64px; }
-.back-link { display:inline-flex; align-items:center; min-height:44px; font-size:12px; color:var(--muted); }
+.back-link { display:inline-flex; align-items:center; gap:8px; min-height:44px; margin:0 0 20px; font-size:13px; line-height:14px; font-weight:500; color:var(--muted); text-decoration:none; }
+.back-link svg { display:block; flex:0 0 14px; width:14px; height:14px; }
+.back-link span { display:block; line-height:14px; }
+.back-link:hover { color:var(--heading); text-decoration:underline; }
+@media print { .back-link { display:none!important; } }
 h1,h2 { color:var(--heading); font-weight:500; }
 h1 { margin:8px 0 12px; font-size:32px; line-height:1.35; letter-spacing:-.04em; }
 h2 { margin:0 0 12px; font-size:18px; line-height:1.4; letter-spacing:-.025em; }
@@ -27,25 +31,24 @@ p { margin:0 0 12px; }
 .scope { margin-top:8px; color:var(--muted); font-size:12px; }
 .question { margin-top:24px; padding:24px; border:1px solid var(--line); border-radius:var(--radius); }
 .original { font-size:15px; line-height:1.7; }
-.limit { margin-bottom:12px; font-size:13px; }
-.limit strong { font-weight:600; }
+.limit { margin-bottom:12px; font-size:14px; }
 .label-detail { color:var(--muted); font-size:12px; align-self:center; }
 .chips { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
-.chip,.badge { display:inline-block; border:1px solid var(--line); border-radius:4px; background:var(--surface); padding:2px 7px; font-size:11px; line-height:1.6; }
+.chip { display:inline-block; border:1px solid var(--line); border-radius:4px; background:var(--surface); padding:2px 7px; font-size:11px; line-height:1.6; }
 table { width:100%; table-layout:fixed; border-collapse:collapse; font-size:14px; }
-caption { text-align:left; font-size:12px; color:var(--muted); padding-bottom:8px; }
-th,td { border-bottom:1px solid var(--line); text-align:left; vertical-align:top; padding:10px 12px; font-weight:400; }
+th,td { border-bottom:1px solid var(--line); text-align:left; vertical-align:top; padding:14px 14px; font-weight:400; word-break:normal; overflow-wrap:anywhere; }
 thead th { background:var(--surface); font-weight:500; }
-th:last-child,td:last-child { width:160px; text-align:right; }
+th:nth-child(2),td:nth-child(2) { width:110px; text-align:right; }
+th:nth-child(3),td:nth-child(3) { width:130px; }
 tfoot th,tfoot td { font-weight:500; }
 .draft-note { color:var(--muted); font-size:12px; margin:20px 0 0; }
-.badge { flex-shrink:0; }
 @media (max-width:680px) {
 .shell { padding:20px 20px 40px; }
 h1 { font-size:28px; }
 .question { padding:16px; }
-th,td { padding:9px 8px; }
-th:last-child,td:last-child { width:100px; }
+th,td { padding:12px; }
+th:nth-child(2),td:nth-child(2) { width:70px; }
+th:nth-child(3),td:nth-child(3) { width:80px; }
 }
 @media print {
 body { font-size:10pt; }
@@ -54,34 +57,48 @@ body { font-size:10pt; }
 .question { break-inside:avoid; margin-top:16px; }
 a { text-decoration:none; }
 }
+/* Shared report header: canonical company-report spacing and typography. */
+.shell { max-width:1120px; margin:0 auto; padding:48px 40px 64px; }
+.cover { padding:0 0 24px; border-bottom:1px solid var(--line); }
+.cover .eyebrow { margin:0 0 12px; color:#a1a1aa; font-size:10px; font-weight:500; letter-spacing:.2em; line-height:1.5; text-transform:uppercase; }
+.cover h1 { margin:0; color:var(--heading); font-family:Pretendard,Inter,'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif; font-size:32px; font-weight:500; line-height:1.3; letter-spacing:-.025em; }
+.cover .report-meta { display:grid; grid-template-columns:1fr .6fr; gap:24px; margin:12px 0 0; }
+.cover .report-meta div { min-width:0; }
+.cover .report-meta dt { margin:0 0 4px; color:#a1a1aa; font-size:10px; font-weight:400; letter-spacing:.05em; line-height:1.65; }
+.cover .report-meta dd { margin:0; color:var(--muted); font-size:12px; font-weight:400; line-height:1.5; }
+.cover .header-note { margin:12px 0 0; color:var(--muted); font-size:12px; line-height:1.5; }
+@media(max-width:1023px) { .shell { padding:32px 24px 48px; } }
+@media(max-width:767px) { .shell { padding:24px 20px 40px; }.cover h1 { font-size:28px; }.cover .report-meta { grid-template-columns:1fr; gap:12px; } }
+@media print { .shell { max-width:none; padding:0; }.cover h1 { font-size:24pt; }.cover .report-meta { grid-template-columns:1fr .6fr; } }
+
 </style>
 </head>
 <body>
 <a class="skip-link" href="#main">본문으로 이동</a>
 <main class="shell" id="main">
-<a class="back-link" href="../../index.html" aria-label="공고별 지원 작업으로 돌아가기">뒤로</a>
-<header><div class="eyebrow">ESSAY QUESTION ANALYSIS</div><h1>신세계 스타벅스 AI 기획/개발 자기소개서 문항</h1><div class="meta"><span>신세계 스타벅스 · AI 기획/개발</span><span>2026-10-13 기준</span><span>사용자 제공 문항</span></div><p class="scope">주식회사 에스씨케이컴퍼니(SCK컴퍼니), 한국 운영법인</p></header>
-<p class="draft-note">초안 480자는 권장 분량입니다. 최종 제출 전 400자 이내로 줄이세요.</p>
+<a class="back-link" href="../../index.html" aria-label="공고별 지원 작업으로 돌아가기"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m10 3-5 5 5 5"/></svg><span>뒤로</span></a>
+<header class="cover"><p class="eyebrow">문항 분석</p><h1>AI 기획/개발</h1><dl class="report-meta"><div><dt>회사</dt><dd>신세계 스타벅스</dd></div><div><dt>기준일</dt><dd>2026-10-13</dd></div></dl></header>
+<p class="draft-note">초안 480자는 권장 분량입니다. 최종 제출 전 400자 이내로 줄이세요. 우선순위는 줄이는 기준이며, 모든 항목과 입사 후 활용 문장은 유지합니다.</p>
 <section class="question" id="question-q1" aria-labelledby="heading-q1">
 <h2 id="heading-q1">문항 1</h2>
 <p class="original">당사 지원 동기와 지원하신 직무를 수행하고 싶은 이유를 구체적으로 작성해주세요.</p>
-<p class="limit">최종 제출 <strong>400자 이내</strong></p>
+<p class="limit">최종 제출 400자 (초안 480자)</p>
 <div class="chips" aria-label="문항 핵심 요구"><span class="chip">회사지원동기</span><span class="chip">직무지원동기</span></div>
-<table><caption>권장 초안 구성 · 총 480자</caption><thead><tr><th scope="col">써야 할 내용</th><th scope="col">권장 초안 글자 수</th></tr></thead><tbody><tr><td>회사 지원 동기: SCK의 사업·서비스 특성과 본인의 회사 선택 이유를 연결</td><td>180자</td></tr><tr><td>직무 지원 동기: AI 기획/개발에서 하고 싶은 일과 그 일을 원하는 이유</td><td>220자</td></tr><tr><td>입사 후 활용·포부: 앞의 동기를 입사 후 기여 방향 한 문장으로 연결 <span class="badge">작성 권고</span></td><td>80자</td></tr></tbody><tfoot><tr><th scope="row">초안 합계</th><td>480자</td></tr></tfoot></table>
+<table><thead><tr><th scope="col">내용</th><th scope="col">초안 분량</th><th scope="col">우선순위</th></tr></thead><tbody><tr><td>회사 지원 동기: SCK의 사업·서비스 특성과 본인의 회사 선택 이유를 연결</td><td>180자</td><td>핵심 유지</td></tr><tr><td>직무 지원 동기: AI 기획/개발에서 하고 싶은 일과 그 일을 원하는 이유</td><td>220자</td><td>핵심 유지</td></tr><tr><td>입사 후 활용·포부: 앞의 동기를 입사 후 기여 방향 한 문장으로 연결</td><td>80자</td><td>한 문장 압축</td></tr></tbody><tfoot><tr><th scope="row">초안 합계</th><td>480자</td><td></td></tr></tfoot></table>
 </section>
 <section class="question" id="question-q2" aria-labelledby="heading-q2">
 <h2 id="heading-q2">문항 2</h2>
 <p class="original">본인이 지원한 직무에서 가장 중요한 역량은 무엇이며 그 역량을 발휘한 경험과 입사 후 업무에 어떻게 활용 할 수 있을지 구체적으로 작성해주세요.</p>
-<p class="limit">최종 제출 <strong>400자 이내</strong></p>
+<p class="limit">최종 제출 400자 (초안 480자)</p>
 <div class="chips" aria-label="문항 핵심 요구"><span class="chip">강점</span><span class="chip">입사 후 포부</span></div>
-<table><caption>권장 초안 구성 · 총 480자</caption><thead><tr><th scope="col">써야 할 내용</th><th scope="col">권장 초안 글자 수</th></tr></thead><tbody><tr><td>핵심 역량: 가장 중요하다고 판단한 역량 하나와 그 이유</td><td>80자</td></tr><tr><td>역량 발휘 경험: 그 역량을 드러낸 본인의 행동과 확인 가능한 결과</td><td>300자</td></tr><tr><td>입사 후 활용: 같은 역량을 공고 업무에 어떻게 활용할지 연결 <span class="badge">문항 필수</span></td><td>100자</td></tr></tbody><tfoot><tr><th scope="row">초안 합계</th><td>480자</td></tr></tfoot></table>
+<table><thead><tr><th scope="col">내용</th><th scope="col">초안 분량</th><th scope="col">우선순위</th></tr></thead><tbody><tr><td>핵심 역량: 가장 중요하다고 판단한 역량 하나와 그 이유</td><td>80자</td><td>핵심 유지</td></tr><tr><td>역량 발휘 경험: 그 역량을 드러낸 본인의 행동과 확인 가능한 결과</td><td>300자</td><td>핵심 유지</td></tr><tr><td>입사 후 활용: 같은 역량을 공고 업무에 어떻게 활용할지 연결</td><td>100자</td><td>핵심 유지</td></tr></tbody><tfoot><tr><th scope="row">초안 합계</th><td>480자</td><td></td></tr></tfoot></table>
 </section>
 <section class="question" id="question-q3" aria-labelledby="heading-q3">
 <h2 id="heading-q3">문항 3</h2>
 <p class="original">학업을 제외하고 가장 열정적이고 도전적으로 몰입해서 기존보다 더 나은 결과를 만들어낸 경험에 대해 구체적으로 작성해주세요.</p>
-<p class="limit">최종 제출 <strong>400자 이내</strong></p>
+<p class="limit">최종 제출 400자 (초안 480자)</p>
 <div class="chips" aria-label="문항 핵심 요구"><span class="chip">강점</span><span class="label-detail">도전·몰입</span></div>
-<table><caption>권장 초안 구성 · 총 480자</caption><thead><tr><th scope="col">써야 할 내용</th><th scope="col">권장 초안 글자 수</th></tr></thead><tbody><tr><td>상황·도전 목표: 학업 밖 활동의 기존 상태와 도전 목표</td><td>100자</td></tr><tr><td>본인의 행동: 몰입해서 시도하고 조정한 핵심 행동</td><td>220자</td></tr><tr><td>개선 결과: 기존보다 무엇이 어떻게 나아졌는지 비교</td><td>100자</td></tr><tr><td>입사 후 활용·포부: 이때의 실행 태도를 업무에서 어떻게 이어갈지 한 문장 <span class="badge">작성 권고</span></td><td>60자</td></tr></tbody><tfoot><tr><th scope="row">초안 합계</th><td>480자</td></tr></tfoot></table>
+<table><thead><tr><th scope="col">내용</th><th scope="col">초안 분량</th><th scope="col">우선순위</th></tr></thead><tbody><tr><td>상황·도전 목표: 학업 밖 활동의 기존 상태와 도전 목표</td><td>100자</td><td>핵심 유지</td></tr><tr><td>본인의 행동: 몰입해서 시도하고 조정한 핵심 행동</td><td>220자</td><td>핵심 유지</td></tr><tr><td>개선 결과: 기존보다 무엇이 어떻게 나아졌는지 비교</td><td>100자</td><td>핵심 유지</td></tr><tr><td>입사 후 활용·포부: 이때의 실행 태도를 업무에서 어떻게 이어갈지 한 문장</td><td>60자</td><td>한 문장 압축</td></tr></tbody><tfoot><tr><th scope="row">초안 합계</th><td>480자</td><td></td></tr></tfoot></table>
 </section>
 </main>
 </body>
