@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>가상 사례 · 지원 전략</title>
+<style>
+
+:root { --page:#fff; --surface:#f9fafb; --heading:#18181b; --body:#27272a; --muted:#71717a; --line:#e5e7eb; --radius:8px; }
+* { box-sizing:border-box; }
+html { scroll-padding-top:88px; }
+body { margin:0; min-width:0; background:var(--page); color:var(--body); font:14px/1.65 Pretendard,'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif; word-break:keep-all; overflow-wrap:anywhere; }
+a { color:inherit; text-underline-offset:3px; }
+:focus-visible { outline:2px solid var(--heading); outline-offset:4px; }
+.skip-link { position:absolute; top:-80px; left:20px; padding:10px; background:white; }
+.skip-link:focus { top:8px; }
+h2,h3 { font-weight:500; color:var(--heading); }
+h2 { font-size:18px; margin:0 0 16px; }
+h3 { font-size:15px; margin:0 0 10px; }
+p { margin:0 0 12px; }
+p:last-child { margin-bottom:0; }
+.strategy-panel { margin-top:28px; }
+.card { border:1px solid var(--line); border-radius:8px; padding:20px; margin:14px 0; }
+.synthetic-notice { padding:14px 16px; margin:20px 0; background:var(--surface); border:1px solid var(--line); border-radius:8px; font-size:13px; }
+.persona { font-size:17px; line-height:1.7; }
+.terminology-block { margin:24px 0; }
+.terminology-note { color:var(--muted); font-size:13px; }
+dl { margin:0; }
+dt { font-size:12px; color:var(--muted); margin-top:12px; }
+dd { margin:4px 0 0; }
+.original { color:var(--muted); font-size:13px; }
+table { width:100%; border-collapse:collapse; table-layout:fixed; font-size:14px; }
+th,td { padding:12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; word-break:normal; overflow-wrap:anywhere; }
+th { background:var(--surface); font-size:13px; font-weight:500; }
+@media(max-width:680px) { .card { padding:16px; } th,td { padding:12px 8px; } }
+@media print { .skip-link { display:none; } .strategy-panel { display:block!important; } .card { break-inside:avoid; } }
+.back-link { display:inline-flex; align-items:center; gap:8px; min-height:44px; margin:0 0 20px; font-size:13px; line-height:14px; font-weight:500; color:var(--muted); text-decoration:none; }
+.back-link svg { display:block; flex:0 0 14px; width:14px; height:14px; }
+.back-link span { display:block; line-height:14px; }
+.back-link:hover { color:var(--heading); text-decoration:underline; }
+@media print { .back-link { display:none!important; } }
+.tab-nav { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; gap: 16px; margin: 0 0 24px; padding: 12px 0; background: #fff; border-bottom: 1px solid var(--line); }
+.tab-nav a { display: inline-flex; flex: 1 1 160px; min-height: 44px; align-items: center; justify-content: center; padding: 8px 20px; border: 1px solid transparent; border-radius: 999px; color: #71717a; background: white; font-size: 14px; font-weight: 600; letter-spacing: -.025em; line-height: 1.5; text-decoration: none; }
+.tab-nav a:hover { background: #f3f4f6; color: #18181b; }
+.tab-nav a[aria-selected="true"] { background: #000000; border-color: #000000; color: white; }
+.tab-nav a[aria-selected="true"]:hover { background: #2a2a2a; }
+.strategy-panel[hidden] { display:none; }
+@media (max-width:680px) {
+.tab-nav { gap:8px; }
+html { scroll-padding-top:132px; }
+.tab-nav a { flex-basis:calc(50% - 8px); padding:8px 20px; font-size:13px; }
+}
+@media print {
+.tab-nav { display:none!important; }
+.strategy-panel[hidden] { display:block!important; }
+}
+
+/* Shared report header: canonical company-report spacing and typography. */
+.shell { max-width:1120px; margin:0 auto; padding:48px 40px 64px; }
+.cover { padding:0 0 24px; border-bottom:1px solid var(--line); }
+.cover .eyebrow { margin:0 0 12px; color:#a1a1aa; font-size:10px; font-weight:500; letter-spacing:.2em; line-height:1.5; text-transform:uppercase; }
+.cover h1 { margin:0; color:var(--heading); font-family:Pretendard,Inter,'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif; font-size:32px; font-weight:500; line-height:1.3; letter-spacing:-.025em; }
+.cover .report-meta { display:grid; grid-template-columns:1fr .6fr; gap:24px; margin:12px 0 0; }
+.cover .report-meta div { min-width:0; }
+.cover .report-meta dt { margin:0 0 4px; color:#a1a1aa; font-size:10px; font-weight:400; letter-spacing:.05em; line-height:1.65; }
+.cover .report-meta dd { margin:0; color:var(--muted); font-size:12px; font-weight:400; line-height:1.5; }
+.cover .header-note { margin:12px 0 0; color:var(--muted); font-size:12px; line-height:1.5; }
+@media(max-width:1023px) { .shell { padding:32px 24px 48px; } }
+@media(max-width:767px) { .shell { padding:24px 20px 40px; }.cover h1 { font-size:28px; }.cover .report-meta { grid-template-columns:1fr; gap:12px; } }
+@media print { .shell { max-width:none; padding:0; }.cover h1 { font-size:24pt; }.cover .report-meta { grid-template-columns:1fr .6fr; } }
+
+</style></head><body>
+<a class="skip-link" href="#main">본문으로 이동</a><main class="shell" id="main">
+<a class="back-link" href="../../index.html" aria-label="공고별 지원 작업으로 돌아가기"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m10 3-5 5 5 5"/></svg><span>뒤로</span></a>
+<nav class="tab-nav" aria-label="지원 전략"><a id="tab-positioning" href="#positioning" data-tab="positioning">포지셔닝</a><a id="tab-motivation" href="#motivation" data-tab="motivation">지원동기</a><a id="tab-questions" href="#questions" data-tab="questions">문항별 배치</a><a id="tab-expressions" href="#expressions" data-tab="expressions">표현·기재</a><a id="tab-review" href="#review" data-tab="review">전체 점검</a></nav>
+<header class="cover"><p class="eyebrow">지원 전략</p><h1>AI 기획/개발</h1><dl class="report-meta"><div><dt>회사</dt><dd>신세계 스타벅스</dd></div><div><dt>기준일</dt><dd>2026-10-13</dd></div></dl></header>
+<p class="synthetic-notice">가상 사례 · 모든 인물상과 경험은 구조 설명용입니다. 실제 지원자의 자료나 작성 답안이 아닙니다.</p>
+<section class="strategy-panel" id="positioning" aria-labelledby="tab-positioning"><h2>포지셔닝</h2><p class="persona">현장의 질문을 작은 데이터·AI 실험으로 바꾸고 결과의 적용 범위를 설명하는 사람 (가상 인물상)</p><p>세 가지 공개 업무를 문제 정의·실행·검증이라는 하나의 흐름으로 설명하기 위한 중립 가상 설정.</p><table><thead><tr><th scope="col">강점·증명 경험</th><th scope="col">JD 연결·부족 근거</th></tr></thead><tbody><tr><td><dl><dt>강점</dt><dd>문제와 우선순위 정의</dd><dt>경험 근거</dt><dd>가상 프로젝트의 판단 기록·산출물·검증 과정을 연결한다.</dd></dl></td><td><dl><dt>JD 표현</dt><dd>전사 데이터·AI 전략을 수립하고,</dd><dt>연결</dt><dd>가상 매장 수요 프로젝트에서 문제·대안·선정 기준을 설명한다. 전사 전략 경험으로 확대하지 않는다.</dd><dt>부족 근거</dt><dd>실제 운영 및 전사 의사결정 경험은 가정하지 않는다.</dd></dl></td></tr><tr><td><dl><dt>강점</dt><dd>작동하는 기능과 실패 처리</dd><dt>경험 근거</dt><dd>가상 프로젝트의 판단 기록·산출물·검증 과정을 연결한다.</dd></dl></td><td><dl><dt>JD 표현</dt><dd>AI Agent를 구축·운영하며,</dd><dt>연결</dt><dd>가상 FAQ Agent의 구현·테스트·개선 과정을 제시한다. 제한 실험을 실제 서비스 운영으로 표현하지 않는다.</dd><dt>부족 근거</dt><dd>실제 운영 및 전사 의사결정 경험은 가정하지 않는다.</dd></dl></td></tr><tr><td><dl><dt>강점</dt><dd>분석 결과를 판단으로 연결</dd><dt>경험 근거</dt><dd>가상 프로젝트의 판단 기록·산출물·검증 과정을 연결한다.</dd></dl></td><td><dl><dt>JD 표현</dt><dd>데이터 분석 및 매출·수요 예측, 고객·매장 분석을 통해 비즈니스 의사결정 지원</dd><dt>연결</dt><dd>가상 수요 예측 비교 실험에서 기준선·오차·적용 조건을 연결한다.</dd><dt>부족 근거</dt><dd>실제 운영 및 전사 의사결정 경험은 가정하지 않는다.</dd></dl></td></tr></tbody></table></section><section class="strategy-panel" id="motivation" aria-labelledby="tab-motivation"><h2>지원동기</h2><div class="card"><dl><dt>비전</dt><dd>현장 구성원이 데이터 근거를 이해하고 판단에 활용할 수 있게 돕고 싶다는 가상 관심 방향.</dd><dt>가상 경험</dt><dd>가상 사례: 공개 형식의 모의 매장 데이터를 분석해 기준선과 예측 결과를 비교한 프로젝트. 실제 지원자의 경험이 아니다.</dd><dt>회사 방향</dt><dd>회사 방향은 제공된 공개 JD가 명시한 데이터·AI 전략, Agent 구축·운영, 분석·예측을 통한 의사결정 지원 범위에 한정한다.</dd><dt>직무 기여</dt><dd>문제를 정의하고 작은 구현·검증 결과를 의사결정에 연결하는 방식으로 기여 방향을 설정한다.</dd></dl></div><table><thead><tr><th scope="col">회사 지원 이유</th><th scope="col">직무 지원 이유</th></tr></thead><tbody><tr><td>매장·고객 문제를 다루는 사업 맥락에 관심을 둔 이유를 설명한다. 확인되지 않은 회사 내부 전략을 인용하지 않는다.</td><td>AI 기획/개발의 문제 정의·구현·검증을 함께 수행하고 싶은 이유를 가상 프로젝트의 판단 과정과 연결한다.</td></tr></tbody></table></section><section class="strategy-panel" id="questions" aria-labelledby="tab-questions"><h2>문항별 배치</h2><article class="card" id="question-q1"><h3>문항 1</h3><p class="original">당사 지원 동기와 지원하신 직무를 수행하고 싶은 이유를 구체적으로 작성해주세요.</p><dl><dt>핵심 메시지</dt><dd>회사 관심과 직무 선택을 가상 문제 해결 경험으로 연결</dd><dt>주 경험</dt><dd>가상 모의 매장 수요 분석 프로젝트</dd><dt>배치 이유</dt><dd>해당 문항의 요구에 직접 답하도록 사례의 역할을 구분한다.</dd><dt>입사 후 기여</dt><dd>작은 실험으로 판단에 필요한 근거를 만드는 방향</dd></dl></article><article class="card" id="question-q2"><h3>문항 2</h3><p class="original">본인이 지원한 직무에서 가장 중요한 역량은 무엇이며 그 역량을 발휘한 경험과 입사 후 업무에 어떻게 활용 할 수 있을지 구체적으로 작성해주세요.</p><dl><dt>핵심 메시지</dt><dd>분석의 정확도뿐 아니라 적용 조건을 설명하는 역량</dd><dt>주 경험</dt><dd>가상 수요 예측 기준선 비교 실험</dd><dt>배치 이유</dt><dd>해당 문항의 요구에 직접 답하도록 사례의 역할을 구분한다.</dd><dt>입사 후 기여</dt><dd>업무의 판단 기준과 검증 방법을 먼저 정하는 방식</dd></dl></article><article class="card" id="question-q3"><h3>문항 3</h3><p class="original">학업을 제외하고 가장 열정적이고 도전적으로 몰입해서 기존보다 더 나은 결과를 만들어낸 경험에 대해 구체적으로 작성해주세요.</p><dl><dt>핵심 메시지</dt><dd>학업 밖에서 문제를 발견하고 반복 개선하는 실행 태도</dd><dt>주 경험</dt><dd>가상 자원봉사 행사 안내 FAQ Agent 실험</dd><dt>배치 이유</dt><dd>해당 문항의 요구에 직접 답하도록 사례의 역할을 구분한다.</dd><dt>입사 후 기여</dt><dd>실패를 기록하고 개선하는 태도를 직무에 연결</dd></dl></article></section><section class="strategy-panel" id="expressions" aria-labelledby="tab-expressions"><h2>표현·기재</h2><article class="card"><h3>전사 데이터·AI 전략을 수립하고,</h3><table><thead><tr><th scope="col">근거·사용 범위</th><th scope="col">사용 위치·반복 조건</th></tr></thead><tbody><tr><td><dl><dt>경험 근거</dt><dd>가상 매장 수요 프로젝트에서 문제·대안·선정 기준을 설명한다. 전사 전략 경험으로 확대하지 않는다.</dd><dt>의미·사용 조건</dt><dd>표현이 가리키는 수행 범위와 본인의 실제 역할이 일치할 때만 사용한다.</dd><dt>사용 불가</dt><dd>모의 실험을 실제 서비스 운영 또는 전사 전략 수립 실적으로 확대하지 않는다.</dd></dl></td><td><dl><dt>문항</dt><dd>문항 1</dd><dt>프로젝트 기술</dt><dd>문제·대안·우선순위 근거</dd><dt>반복 조건</dt><dd>문항에서는 핵심 판단만 요약하고 프로젝트 기술에서는 방법·검증을 확장한다. 같은 문장을 복사하거나 실제보다 범위를 넓히지 않는다.</dd></dl></td></tr></tbody></table></article><article class="card"><h3>AI Agent를 구축·운영하며,</h3><table><thead><tr><th scope="col">근거·사용 범위</th><th scope="col">사용 위치·반복 조건</th></tr></thead><tbody><tr><td><dl><dt>경험 근거</dt><dd>가상 FAQ Agent의 구현·테스트·개선 과정을 제시한다. 제한 실험을 실제 서비스 운영으로 표현하지 않는다.</dd><dt>의미·사용 조건</dt><dd>표현이 가리키는 수행 범위와 본인의 실제 역할이 일치할 때만 사용한다.</dd><dt>사용 불가</dt><dd>모의 실험을 실제 서비스 운영 또는 전사 전략 수립 실적으로 확대하지 않는다.</dd></dl></td><td><dl><dt>문항</dt><dd>문항 3</dd><dt>프로젝트 기술</dt><dd>구현 범위·오류 사례·개선 기록</dd><dt>반복 조건</dt><dd>문항에서는 핵심 판단만 요약하고 프로젝트 기술에서는 방법·검증을 확장한다. 같은 문장을 복사하거나 실제보다 범위를 넓히지 않는다.</dd></dl></td></tr></tbody></table></article><article class="card"><h3>데이터 분석 및 매출·수요 예측, 고객·매장 분석을 통해 비즈니스 의사결정 지원</h3><table><thead><tr><th scope="col">근거·사용 범위</th><th scope="col">사용 위치·반복 조건</th></tr></thead><tbody><tr><td><dl><dt>경험 근거</dt><dd>가상 수요 예측 비교 실험에서 기준선·오차·적용 조건을 연결한다.</dd><dt>의미·사용 조건</dt><dd>표현이 가리키는 수행 범위와 본인의 실제 역할이 일치할 때만 사용한다.</dd><dt>사용 불가</dt><dd>모의 실험을 실제 서비스 운영 또는 전사 전략 수립 실적으로 확대하지 않는다.</dd></dl></td><td><dl><dt>문항</dt><dd>문항 2</dd><dt>프로젝트 기술</dt><dd>기준선·지표·해석·한계</dd><dt>반복 조건</dt><dd>문항에서는 핵심 판단만 요약하고 프로젝트 기술에서는 방법·검증을 확장한다. 같은 문장을 복사하거나 실제보다 범위를 넓히지 않는다.</dd></dl></td></tr></tbody></table></article><div class="terminology-block"><h3>회사별 용어 일관성</h3><p class="terminology-note">확인된 근거와 같은 대상·문맥에만 적용합니다. 서로 다른 구매자·실사용자·회원은 구별하고, 직접 인용과 고유명칭은 보존합니다.</p><table><thead><tr><th scope="col">개념·회사 표현</th><th scope="col">사용 문맥·근거</th></tr></thead><tbody><tr><td><dl><dt>개념·대상</dt><dd>가상 매장 분석의 구매·이용 대상</dd><dt>회사 표현</dt><dd>고객</dd><dt>흔한 변형</dt><dd>사용자 · 유저</dd></dl></td><td><dl><dt>사용 문맥</dt><dd>가상 적용 예시: 매장에서 상품·서비스를 구매하거나 이용하는 대상을 설명할 때만 고객으로 통일한다. 구매자·실사용자·회원이 서로 다른 대상이면 구별한다.</dd><dt>적용 산출물</dt><dd>자소서 · 경력기술서 · 프로젝트 설명</dd><dt>보존할 예외</dt><dd>가상 FAQ Agent 실험의 소프트웨어 이용자는 사용자로 유지한다. / 회원 가입 여부를 설명하는 대상은 회원으로 구별한다. / 과거 타사의 고유명칭·직접 인용·공식 직함은 원문을 보존한다.</dd><dt>근거</dt><dd>기존 공개 JD 인용: “데이터 분석 및 매출·수요 예측, 고객·매장 분석을 통해 비즈니스 의사결정 지원”. 이 행은 해당 문구를 활용한 가상 적용 예시이며 회사 전체의 공식 용어 규정이 아니다.</dd></dl></td></tr></tbody></table></div></section><section class="strategy-panel" id="review" aria-labelledby="tab-review"><h2>전체 점검</h2><h3>전체 문항의 포지셔닝·메시지 일관성</h3><p>세 문항을 문제를 정의하고 실행·검증으로 연결하는 인물상으로 묶고, 각 문항의 메시지가 이 포지셔닝과 같은 방향을 향하도록 배치한다.</p></section>
+</main><script>
+(function () {
+  'use strict';
+  var nav = document.querySelector('.tab-nav');
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-tab]'));
+  var panels = tabs.map(function (tab) { return document.getElementById(tab.getAttribute('href').slice(1)); });
+  if (!nav || tabs.length !== 5 || panels.some(function (panel) { return !panel; })) return;
+  function activate(index, focus, resetScroll) {
+    tabs.forEach(function (tab, i) {
+      tab.setAttribute('aria-selected', String(i === index));
+      tab.tabIndex = i === index ? 0 : -1;
+      panels[i].hidden = i !== index;
+    });
+    if (focus) tabs[index].focus();
+    // Only deliberate tab selection resets reading position; hash/history restoration stays native.
+    if (resetScroll) window.scrollTo(0, 0);
+  }
+  nav.setAttribute('role', 'tablist');
+  tabs.forEach(function (tab, index) {
+    tab.setAttribute('role', 'tab');
+    tab.setAttribute('aria-controls', panels[index].id);
+    panels[index].setAttribute('role', 'tabpanel');
+    panels[index].tabIndex = 0;
+    tab.addEventListener('click', function (event) {
+      event.preventDefault();
+      activate(index, false, true);
+      if (window.history && window.history.replaceState) window.history.replaceState(null, '', '#' + panels[index].id);
+    });
+    tab.addEventListener('keydown', function (event) {
+      var next = index;
+      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+      else if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = tabs.length - 1;
+      else if (event.key === ' ' || event.key === 'Enter') next = index;
+      else return;
+      event.preventDefault();
+      activate(next, true, true);
+    });
+  });
+  function activateHash() {
+    if (window.location.hash === "#summary") { activate(0, false); return; }
+    var index = panels.findIndex(function (panel) { return '#' + panel.id === window.location.hash; });
+    if (index >= 0) activate(index, false);
+  }
+  activate(0, false);
+  activateHash();
+  window.addEventListener('hashchange', activateHash);
+}());
+</script></body></html>
