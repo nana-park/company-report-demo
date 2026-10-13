@@ -22,8 +22,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
---> 
-<html lang="ko"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src 'none'; img-src 'none'; font-src 'none'; script-src 'sha256-r7FB0X/zkzMI+BQuwOOVhAgOHeSNKBK5i00Y0mZXR/c='; style-src 'unsafe-inline'; base-uri 'none'; object-src 'none'; frame-src 'none'; form-action 'none'"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>로컬 HTML 암호화</title>
+-->
+<html lang="ko"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src 'none'; img-src 'none'; font-src 'none'; script-src 'sha256-smlImG4fRNyfgI62ZDWsg1bXJ6meYr73g+m907okARw='; style-src 'unsafe-inline'; base-uri 'none'; object-src 'none'; frame-src 'none'; form-action 'none'"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>로컬 HTML 암호화</title>
 <style>body{font:16px/1.6 system-ui;max-width:42rem;margin:4vh auto;padding:24px;color:#18181b}label{display:block;margin-top:18px}input,button{font:inherit;padding:10px;max-width:100%;box-sizing:border-box}input[type=password]{display:block;width:100%}button,a{margin:16px 12px 0 0}button{cursor:pointer}#status{min-height:3em;border-top:1px solid #ddd;padding-top:16px}.note{color:#52525b;font-size:14px}</style></head><body><main><h1>지원 전략 HTML 암호화</h1><p role="note"><strong>검토용:</strong> 지금은 가상 HTML과 공개된 테스트용 비밀번호만 사용하세요. 실제 브라우저 검수 전에는 개인 자료나 실제 비밀번호를 넣지 마세요.</p><p>외부 파일 없이 열리는 지원 전략 HTML을 선택하고 길고 고유한 비밀번호를 입력하세요. 암호화 파일을 저장한 뒤, 공유 전에 직접 열어 확인하세요.</p>
 <form id="form" autocomplete="off" novalidate><label for="file">HTML 파일 선택 (최대 12 MiB)</label><input id="file" type="file" accept=".html,.htm,text/html" required><label for="password">비밀번호 (16자 이상)</label><input id="password" type="password" autocomplete="new-password" required minlength="16"><label for="confirmation">비밀번호 확인</label><input id="confirmation" type="password" autocomplete="new-password" required minlength="16"><button id="encrypt" type="submit">암호화</button><button id="reset" type="button">초기화</button></form>
 <a id="download" download="locked-document.html" hidden>암호문 HTML 다운로드</a><p id="status" role="status" aria-live="polite">준비되었습니다. 선택한 파일은 미리 보기나 업로드하지 않습니다.</p>
@@ -48,6 +48,13 @@ SOFTWARE.
       if (html.slice(cursor, match.index).includes('<')) fail('올바른 HTML 문서가 아닙니다.');
       cursor = token.lastIndex;
       const raw = match[0];
+      if (raw.startsWith('<!--')) {
+        // Accept only plain, well-formed comments. HTML closes <!--> and <!--->
+        // early, unlike the tokenizer regex; ambiguous comments could hide tags.
+        const comment = raw.slice(4, -3);
+        if (/[<>]|--/.test(comment) || comment.endsWith('-')) fail('HTML 주석이 올바르지 않습니다. 일반 텍스트 주석만 지원합니다.');
+        continue;
+      }
       if (/^<!/.test(raw)) continue;
       const parts = raw.match(/^<(\/?)([a-z][\w-]*)([\s\S]*?)>$/i);
       const closing = parts[1], tag = parts[2].toLowerCase();
