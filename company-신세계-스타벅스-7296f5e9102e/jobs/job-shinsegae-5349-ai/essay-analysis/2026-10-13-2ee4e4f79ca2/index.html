@@ -38,10 +38,11 @@ p { margin:0 0 12px; }
 table { width:100%; table-layout:fixed; border-collapse:collapse; font-size:14px; }
 th,td { border-bottom:1px solid var(--line); text-align:left; vertical-align:top; padding:14px 14px; font-weight:400; word-break:normal; overflow-wrap:anywhere; }
 thead th { background:var(--surface); font-weight:500; }
-th:nth-child(2),td:nth-child(2) { width:110px; text-align:right; }
-th:nth-child(3),td:nth-child(3) { width:130px; }
+th:nth-child(2),td:nth-child(2) { width:110px; text-align:center; }
+th:nth-child(3),td:nth-child(3) { width:130px; text-align:center; }
 tfoot th,tfoot td { font-weight:500; }
 .draft-note { color:var(--muted); font-size:12px; margin:20px 0 0; }
+.draft-note + .draft-note { margin-top:8px; }
 @media (max-width:680px) {
 .shell { padding:20px 20px 40px; }
 h1 { font-size:28px; }
@@ -78,7 +79,8 @@ a { text-decoration:none; }
 <main class="shell" id="main">
 <a class="back-link" href="../../index.html" aria-label="공고별 지원 작업으로 돌아가기"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m10 3-5 5 5 5"/></svg><span>뒤로</span></a>
 <header class="cover"><p class="eyebrow">문항 분석</p><h1>AI 기획/개발</h1><dl class="report-meta"><div><dt>회사</dt><dd>신세계 스타벅스</dd></div><div><dt>기준일</dt><dd>2026-10-13</dd></div></dl></header>
-<p class="draft-note">초안 480자는 권장 분량입니다. 최종 제출 전 400자 이내로 줄이세요. 우선순위는 줄이는 기준이며, 모든 항목과 입사 후 활용 문장은 유지합니다.</p>
+<p class="draft-note">초안 480자는 권장 분량입니다. 최종 제출 전 400자 이내로 줄이세요.</p>
+<p class="draft-note">우선순위는 글자 수 조정이 불가피할 때 적용하며, 모든 항목과 입사 후 활용 문장은 유지합니다.</p>
 <section class="question" id="question-q1" aria-labelledby="heading-q1">
 <h2 id="heading-q1">문항 1</h2>
 <p class="original">당사 지원 동기와 지원하신 직무를 수행하고 싶은 이유를 구체적으로 작성해주세요.</p>
