@@ -164,6 +164,20 @@ tbody tr:last-child>* { border-bottom: 0; }
   .chart-data,.context { font-size:8pt; }.sources { break-before:page; }.source-list>li { break-inside:avoid; }
   .report-footer { font-size:8pt; } a { text-decoration:none; color:inherit; }
 }
+/* Shared report header: canonical company-report spacing and typography. */
+.shell { max-width:1120px; margin:0 auto; padding:48px 40px 64px; }
+.cover { padding:0 0 24px; border-bottom:1px solid var(--line); }
+.cover .eyebrow { margin:0 0 12px; color:#a1a1aa; font-size:10px; font-weight:500; letter-spacing:.2em; line-height:1.5; text-transform:uppercase; }
+.cover h1 { margin:0; color:var(--heading); font-family:Pretendard,Inter,'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif; font-size:32px; font-weight:500; line-height:1.3; letter-spacing:-.025em; }
+.cover .report-meta { display:grid; grid-template-columns:1fr .6fr; gap:24px; margin:12px 0 0; }
+.cover .report-meta div { min-width:0; }
+.cover .report-meta dt { margin:0 0 4px; color:#a1a1aa; font-size:10px; font-weight:400; letter-spacing:.05em; line-height:1.65; }
+.cover .report-meta dd { margin:0; color:var(--muted); font-size:12px; font-weight:400; line-height:1.5; }
+.cover .header-note { margin:12px 0 0; color:var(--muted); font-size:12px; line-height:1.5; }
+@media(max-width:1023px) { .shell { padding:32px 24px 48px; } }
+@media(max-width:767px) { .shell { padding:24px 20px 40px; }.cover h1 { font-size:28px; }.cover .report-meta { grid-template-columns:1fr; gap:12px; } }
+@media print { .shell { max-width:none; padding:0; }.cover h1 { font-size:24pt; }.cover .report-meta { grid-template-columns:1fr .6fr; } }
+
 </style>
 </head>
 <body>
@@ -172,9 +186,9 @@ tbody tr:last-child>* { border-bottom: 0; }
 <!-- offline-company-report:backnav:v1 --><a class="back-link" href="../../jobs/job-shinsegae-5349-ai/index.html" aria-label="AI 기획/개발 지원 작업으로 돌아가기"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m10 3-5 5 5 5"/></svg><span>뒤로</span></a><!-- /offline-company-report:backnav:v1 -->
 <nav class="tab-nav" aria-label="보고서 상세 분석"><a id="tab-basic" href="#basic" data-tab>기본 조사</a><a id="tab-ai" href="#ai" data-tab>AI 분석</a><a id="tab-global" href="#global" data-tab>글로벌 분석</a><a id="tab-hiring" href="#hiring" data-tab>채용 전략</a></nav>
 <header class="cover">
-<p class="eyebrow">COMPANY RESEARCH · 신세계 스타벅스</p>
-<h1>신세계 스타벅스 기업 조사</h1>
-<dl class="report-meta"><div><dt>회사</dt><dd>신세계 스타벅스</dd></div><div><dt>지원 직무</dt><dd>AI 기획/개발</dd></div><div><dt>기준일</dt><dd>2026-10-12</dd></div></dl>
+<p class="eyebrow">기업조사</p>
+<h1>신세계 스타벅스</h1>
+<dl class="report-meta"><div><dt>지원 직무</dt><dd>AI 기획/개발</dd></div><div><dt>기준일</dt><dd>2026-10-12</dd></div></dl>
 </header>
 
 <main id="report-content" tabindex="-1">
@@ -235,3 +249,4 @@ tbody tr:last-child>* { border-bottom: 0; }
 </script>
 </body>
 </html>
+
