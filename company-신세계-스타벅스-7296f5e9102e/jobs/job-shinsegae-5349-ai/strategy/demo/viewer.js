@@ -1,3 +1,91 @@
+// production/render-report.mjs
+var el = (tag2, text, cls) => {
+  const n = document.createElement(tag2);
+  if (text !== void 0) n.textContent = text;
+  if (cls) n.className = cls;
+  return n;
+};
+function definitions(text) {
+  const dl = el("dl"), lines = text.split("\n");
+  for (let i = 0; i < lines.length; i += 2) {
+    dl.append(el("dt", lines[i]));
+    dl.append(el("dd", lines[i + 1] || ""));
+  }
+  return dl;
+}
+function table(block, nested = false) {
+  const wrap2 = el("div", void 0, "table-wrap"), t = el("table"), head = el("thead"), hr = el("tr"), body = el("tbody");
+  for (const text of block.headers) {
+    const th = el("th", text);
+    th.scope = "col";
+    hr.append(th);
+  }
+  head.append(hr);
+  for (const row of block.rows) {
+    const tr = el("tr");
+    for (const text of row) {
+      const td = el("td");
+      if (nested) td.append(definitions(text));
+      else td.textContent = text;
+      tr.append(td);
+    }
+    body.append(tr);
+  }
+  t.append(head, body);
+  wrap2.append(t);
+  return wrap2;
+}
+function generic(block) {
+  if (block.type === "table") return table(block);
+  if (block.type === "list") {
+    const ul = el("ul");
+    for (const text of block.items) ul.append(el("li", text));
+    return ul;
+  }
+  return el(block.type === "heading" ? "h3" : "p", block.text, "report-text");
+}
+function types(tab) {
+  return tab.blocks.map((b) => b.type).join(",");
+}
+function renderReport(doc, cover, panels) {
+  const [p, q, e] = doc.tabs;
+  const restored = types(p) === "paragraph,heading,paragraph,paragraph,paragraph,heading,heading,list,paragraph,table" && types(q) === "heading,heading,paragraph,paragraph,heading,paragraph,paragraph,heading,paragraph,paragraph" && types(e) === "heading,heading,table,heading,table,heading,table,heading,paragraph,table";
+  if (!restored) {
+    for (let i = 0; i < doc.tabs.length; i++) for (const block of doc.tabs[i].blocks) panels[i].append(generic(block));
+    return;
+  }
+  const b = p.blocks, header = el("header", void 0, "cover");
+  header.append(el("p", b[0].text, "eyebrow"), el("h1", b[1].text));
+  const meta = el("dl", void 0, "report-meta");
+  for (const item of b.slice(2, 4)) {
+    const div = el("div"), lines = item.text.split("\n");
+    div.append(el("dt", lines.shift()), el("dd", lines.join("\n")));
+    meta.append(div);
+  }
+  header.append(meta);
+  cover.append(header, el("p", b[4].text, "private-notice"));
+  panels[0].append(el("h2", b[5].text));
+  const jd = el("div", void 0, "jd-original");
+  jd.append(el("h3", b[6].text), generic(b[7]));
+  panels[0].append(jd, el("p", b[8].text, "persona"), table(b[9]));
+  panels[1].append(el("h2", q.blocks[0].text));
+  for (let i = 1; i < q.blocks.length; i += 3) {
+    const card = el("article", void 0, "card");
+    card.append(el("h3", q.blocks[i].text));
+    for (const block of q.blocks.slice(i + 1, i + 3)) card.append(definitions(block.text));
+    panels[1].append(card);
+  }
+  panels[2].append(el("h2", e.blocks[0].text));
+  for (let i = 1; i < 7; i += 2) {
+    const card = el("article", void 0, "card");
+    card.append(el("h3", e.blocks[i].text), table(e.blocks[i + 1], true));
+    panels[2].append(card);
+  }
+  const terms = el("div", void 0, "terminology-block");
+  terms.append(el("h3", e.blocks[7].text), el("p", e.blocks[8].text, "terminology-note"), table(e.blocks[9], true));
+  panels[2].append(terms);
+}
+
 // vendor/jose/lib/buffer_utils.js
 var encoder = new TextEncoder();
 var decoder = new TextDecoder();
@@ -256,17 +344,17 @@ var isCryptoKey = (key2) => {
 };
 var isKeyObject = (key2) => key2?.[Symbol.toStringTag] === "KeyObject";
 var isKeyLike = (key2) => isCryptoKey(key2) || isKeyObject(key2);
-function message(msg, actual, ...types) {
-  if (types.length > 2) {
-    const last = types.pop();
-    msg += `one of type ${types.join(", ")}, or ${last}.`;
-  } else types.length === 2 ? msg += `one of type ${types[0]} or ${types[1]}.` : msg += `of type ${types[0]}.`;
+function message(msg, actual, ...types2) {
+  if (types2.length > 2) {
+    const last = types2.pop();
+    msg += `one of type ${types2.join(", ")}, or ${last}.`;
+  } else types2.length === 2 ? msg += `one of type ${types2[0]} or ${types2[1]}.` : msg += `of type ${types2[0]}.`;
   return actual == null ? msg += ` Received ${actual}` : typeof actual == "function" && actual.name ? msg += ` Received function ${actual.name}` : typeof actual == "object" && actual != null && actual.constructor?.name && (msg += ` Received an instance of ${actual.constructor.name}`), msg;
 }
-var invalidKeyInput = (actual, ...types) => message("Key must be ", actual, ...types);
+var invalidKeyInput = (actual, ...types2) => message("Key must be ", actual, ...types2);
 function invalidKeyType(alg, actual, secret) {
-  const types = ["CryptoKey", "KeyObject", "JSON Web Key"];
-  return secret && types.push("Uint8Array"), new TypeError(message(`Key for the ${alg} algorithm must be `, actual, ...types));
+  const types2 = ["CryptoKey", "KeyObject", "JSON Web Key"];
+  return secret && types2.push("Uint8Array"), new TypeError(message(`Key for the ${alg} algorithm must be `, actual, ...types2));
 }
 var unusable = (name, prop = "algorithm.name") => new TypeError(`CryptoKey does not support this operation, its ${prop} must be ${name}`);
 function checkUsage(key2, usage) {
@@ -381,7 +469,7 @@ async function decrypt(enc, cek, ciphertext, iv, tag2, aad) {
 }
 
 // vendor/jose/lib/key_descriptor.js
-function table(entries) {
+function table2(entries) {
   const out = { __proto__: null };
   for (const alg in entries)
     out[alg] = { ...entries[alg], alg };
@@ -440,7 +528,7 @@ function pbes2() {
     ops: ["deriveBits", "deriveBits"]
   };
 }
-var JWE = table({
+var JWE = table2({
   dir: {
     kty: ["oct"],
     mode: "direct-encryption",
@@ -480,7 +568,7 @@ function contentEncryption(bits, cbc = false) {
     cbc
   };
 }
-var ENC = table({
+var ENC = table2({
   A128GCM: contentEncryption(128),
   A192GCM: contentEncryption(192),
   A256GCM: contentEncryption(256),
@@ -832,7 +920,7 @@ function mldsa(bits) {
     usages: sig
   };
 }
-var JWS = table({
+var JWS = table2({
   HS256: hmac(256),
   HS384: hmac(384),
   HS512: hmac(512),
@@ -1230,11 +1318,18 @@ function clear() {
   $("viewer").hidden = true;
   $("tabs").replaceChildren();
   $("panels").replaceChildren();
+  $("report-cover").replaceChildren();
   $("password").value = "";
+  $("lock-panel").hidden = false;
+  $("session-actions").hidden = true;
+  $("session-options").hidden = true;
+  $("options").setAttribute("aria-expanded", "false");
 }
 function render(doc) {
   $("tabs").replaceChildren();
   $("panels").replaceChildren();
+  $("report-cover").replaceChildren();
+  const panelList = [];
   doc.tabs.forEach((tab, index) => {
     const button = node("button", tab.title);
     button.type = "button";
@@ -1245,32 +1340,8 @@ function render(doc) {
     panel.id = "panel-" + tab.id;
     panel.setAttribute("role", "tabpanel");
     panel.setAttribute("aria-labelledby", button.id);
-    for (const b of tab.blocks) {
-      if (b.type === "paragraph" || b.type === "heading") panel.append(node(b.type === "heading" ? "h3" : "p", b.text));
-      else if (b.type === "list") {
-        const ul = node("ul");
-        for (const item of b.items) ul.append(node("li", item));
-        panel.append(ul);
-      } else if (b.type === "table") {
-        const wrap2 = node("div");
-        wrap2.className = "table-wrap";
-        const table2 = node("table"), thead = node("thead"), head = node("tr"), tbody = node("tbody");
-        for (const label of b.headers) {
-          const th = node("th", label);
-          th.scope = "col";
-          head.append(th);
-        }
-        thead.append(head);
-        for (const row of b.rows) {
-          const tr = node("tr");
-          for (const value of row) tr.append(node("td", value));
-          tbody.append(tr);
-        }
-        table2.append(thead, tbody);
-        wrap2.append(table2);
-        panel.append(wrap2);
-      }
-    }
+    panel.className = "strategy-panel";
+    panelList.push(panel);
     button.onclick = () => {
       for (const b of $("tabs").children) {
         b.setAttribute("aria-selected", String(b === button));
@@ -1291,7 +1362,10 @@ function render(doc) {
     if (index === 0) button.click();
     else panel.hidden = true;
   });
+  renderReport(doc, $("report-cover"), panelList);
   $("viewer").hidden = false;
+  $("lock-panel").hidden = true;
+  $("session-actions").hidden = false;
 }
 $("backup-file").onchange = async () => {
   clear();
@@ -1352,17 +1426,23 @@ $("unlock-form").onsubmit = async (event) => {
     try {
       render(doc);
     } catch {
+      clear();
       status("\uBCF5\uD638\uD654\uB294 \uC644\uB8CC\uD588\uC9C0\uB9CC \uD654\uBA74 \uD45C\uC2DC\uC5D0 \uC2E4\uD328\uD588\uC2B5\uB2C8\uB2E4.");
       return;
     }
     key = candidate;
     backup = selected;
-    status("\uC9C0\uC6D0 \uC804\uB7B5\uC744 \uC5F4\uC5C8\uC2B5\uB2C8\uB2E4. \uD398\uC774\uC9C0\uB97C \uB2EB\uAC70\uB098 \uC7A0\uADF8\uBA74 \uB2E4\uC2DC \uC7A0\uAE41\uB2C8\uB2E4.");
+    status("");
   } catch {
     if (generation === epoch) status("\uC124\uC815 \uB610\uB294 \uD30C\uC77C\uC744 \uD655\uC778\uD558\uC138\uC694.");
   } finally {
     if (generation === epoch) $("unlock").disabled = false;
   }
+};
+$("options").onclick = () => {
+  const open = $("session-options").hidden;
+  $("session-options").hidden = !open;
+  $("options").setAttribute("aria-expanded", String(open));
 };
 $("remember").onclick = async () => {
   if (!$("storage-consent").checked || !backup || !key) {
