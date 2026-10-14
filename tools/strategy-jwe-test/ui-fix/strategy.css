@@ -1,0 +1,70 @@
+
+:root { --page:#fff; --surface:#f9fafb; --heading:#18181b; --body:#27272a; --muted:#71717a; --line:#e5e7eb; --radius:8px; }
+* { box-sizing:border-box; }
+html { scroll-padding-top:88px; }
+body { margin:0; min-width:0; background:var(--page); color:var(--body); font:14px/1.65 Pretendard,'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif; word-break:keep-all; overflow-wrap:anywhere; }
+a { color:inherit; text-underline-offset:3px; }
+:focus-visible { outline:2px solid var(--heading); outline-offset:4px; }
+.skip-link { position:absolute; top:-80px; left:20px; padding:10px; background:white; }
+.skip-link:focus { top:8px; }
+h2,h3 { font-weight:500; color:var(--heading); }
+h2 { font-size:18px; margin:0 0 16px; }
+h3 { font-size:15px; margin:0 0 10px; }
+p { margin:0 0 12px; }
+p:last-child { margin-bottom:0; }
+.strategy-panel { margin-top:28px; }
+.card { border:1px solid var(--line); border-radius:8px; padding:20px; margin:14px 0; }
+.private-notice { padding:14px 16px; margin:20px 0; background:var(--surface); border:1px solid var(--line); border-radius:8px; font-size:13px; }
+.persona { font-size:17px; line-height:1.7; }
+.jd-original { margin:0 0 20px; padding:16px; background:var(--surface); border:1px solid var(--line); border-radius:8px; }
+.jd-original ul { margin:0; padding-left:20px; }
+.jd-original li + li { margin-top:6px; }
+.jd-original li { white-space:pre-wrap; }
+.terminology-block { margin:24px 0; }
+.terminology-note { color:var(--muted); font-size:13px; }
+dl { margin:0; }
+dt { font-size:12px; color:var(--muted); margin-top:12px; }
+dd { margin:4px 0 0; }
+.original { color:var(--muted); font-size:13px; }
+table { width:100%; border-collapse:collapse; table-layout:fixed; font-size:14px; }
+th,td { padding:12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; word-break:normal; overflow-wrap:anywhere; }
+th { background:var(--surface); font-size:13px; font-weight:500; }
+@media(max-width:680px) { .card { padding:16px; } th,td { padding:12px 8px; } }
+@media print { .skip-link { display:none; } .strategy-panel { display:block!important; } .card { break-inside:avoid; } }
+.back-link { display:inline-flex; align-items:center; gap:8px; min-height:44px; margin:0 0 20px; font-size:13px; line-height:14px; font-weight:500; color:var(--muted); text-decoration:none; }
+.back-link svg { display:block; flex:0 0 14px; width:14px; height:14px; }
+.back-link span { display:block; line-height:14px; }
+.back-link:hover { color:var(--heading); text-decoration:underline; }
+@media print { .back-link { display:none!important; } }
+.tab-nav { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; gap: 16px; margin: 0 0 24px; padding: 12px 0; background: #fff; border-bottom: 1px solid var(--line); }
+.tab-nav button { display: inline-flex; flex: 1 1 160px; min-height: 44px; align-items: center; justify-content: center; padding: 8px 20px; border: 1px solid transparent; border-radius: 999px; color: #71717a; background: white; font-size: 14px; font-weight: 600; letter-spacing: -.025em; line-height: 1.5; text-decoration: none; }
+.tab-nav button:hover { background: #f3f4f6; color: #18181b; }
+.tab-nav button[aria-selected="true"] { background: #000000; border-color: #000000; color: white; }
+.tab-nav button[aria-selected="true"]:hover { background: #2a2a2a; }
+.strategy-panel[hidden] { display:none; }
+@media (max-width:680px) {
+.tab-nav { gap:8px; }
+html { scroll-padding-top:132px; }
+.tab-nav button { flex-basis:calc(50% - 8px); padding:8px 20px; font-size:13px; }
+}
+@media print {
+.tab-nav { display:none!important; }
+.strategy-panel[hidden] { display:block!important; }
+}
+
+/* Shared report header: canonical company-report spacing and typography. */
+.shell { max-width:1120px; margin:0 auto; padding:48px 40px 64px; }
+.cover { padding:0 0 24px; border-bottom:1px solid var(--line); }
+.cover .eyebrow { margin:0 0 12px; color:#a1a1aa; font-size:10px; font-weight:500; letter-spacing:.2em; line-height:1.5; text-transform:uppercase; }
+.cover h1 { margin:0; color:var(--heading); font-family:Pretendard,Inter,'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif; font-size:32px; font-weight:500; line-height:1.3; letter-spacing:-.025em; }
+.cover .report-meta { display:grid; grid-template-columns:1fr .6fr; gap:24px; margin:12px 0 0; }
+.cover .report-meta div { min-width:0; }
+.cover .report-meta dt { margin:0 0 4px; color:#a1a1aa; font-size:10px; font-weight:400; letter-spacing:.05em; line-height:1.65; }
+.cover .report-meta dd { margin:0; color:var(--muted); font-size:12px; font-weight:400; line-height:1.5; }
+.cover .header-note { margin:12px 0 0; color:var(--muted); font-size:12px; line-height:1.5; }
+@media(max-width:1023px) { .shell { padding:32px 24px 48px; } }
+@media(max-width:767px) { .shell { padding:24px 20px 40px; }.cover h1 { font-size:28px; }.cover .report-meta { grid-template-columns:1fr; gap:12px; } }
+@media print { .shell { max-width:none; padding:0; }.cover h1 { font-size:24pt; }.cover .report-meta { grid-template-columns:1fr .6fr; } }
+
+
+[hidden]{display:none!important}.session-tools{display:flex;align-items:center;justify-content:space-between;gap:12px}.session-tools .back-link{margin-bottom:0}.session-actions{display:flex;gap:8px;align-items:center}button{font:inherit;cursor:pointer}button:disabled{opacity:.5;cursor:default}.quiet-button{border:1px solid var(--line);background:white;border-radius:8px;padding:8px 12px;color:var(--muted)}.lock-panel{max-width:560px;margin:56px auto;padding:28px;border:1px solid var(--line);border-radius:var(--radius)}.lock-panel h1{font-size:24px;font-weight:500;margin:0 0 12px}.lock-panel label{display:block;margin:20px 0}.lock-panel input[type=password]{display:block;width:100%;margin-top:8px;padding:12px;border:1px solid #a1a1aa;border-radius:6px;font:inherit}.primary-button{border:1px solid black;background:black;color:white;border-radius:6px;padding:10px 18px}.session-options{padding:16px;margin:16px 0;background:var(--surface);border:1px solid var(--line);border-radius:8px}.session-options label{display:block;margin-bottom:12px}#status{font-size:13px;color:var(--muted);margin:12px 0}#viewer{margin-top:20px}.tab-nav button{cursor:pointer;font-family:inherit}.table-wrap{overflow-x:auto}td,dd,.persona{white-space:pre-wrap}.report-text{white-space:pre-wrap}@media print{.session-tools,.lock-panel,.session-options,#status,.tab-nav{display:none!important}#viewer[hidden]{display:none!important}#viewer:not([hidden]) .strategy-panel[hidden]{display:block!important}}
