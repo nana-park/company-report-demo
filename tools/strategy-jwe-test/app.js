@@ -1273,14 +1273,38 @@ $("setup").onclick = async () => {
 };
 $("public").onclick = () => download("SYNTHETIC-public-key.json", state.config);
 $("backup").onclick = () => download("SYNTHETIC-encrypted-backup.json", state.backup);
+function beginSelection() {
+  const generation = ++epoch;
+  if (!state) $("setup").disabled = false;
+  ciphertext = void 0;
+  $("viewer").hidden = true;
+  $("tabs").replaceChildren();
+  $("content").textContent = "";
+  $("unlock").disabled = true;
+  return generation;
+}
+function selectCiphertext(text, generation) {
+  if (generation !== epoch) return;
+  if (text.length > MAX_JWE_CHARS || text.split(".").length !== 5) {
+    status("\uAC00\uC0C1 JWE \uD615\uC2DD \uB610\uB294 \uD06C\uAE30\uB97C \uD655\uC778\uD558\uC138\uC694.");
+    return;
+  }
+  ciphertext = text;
+  $("unlock").disabled = !state;
+  status("\uAC00\uC0C1 \uC804\uB7B5\uC744 \uC120\uD0DD\uD588\uC2B5\uB2C8\uB2E4. \uC7A0\uAE08 \uD574\uC81C\uB97C \uB204\uB974\uC138\uC694.");
+}
 $("cipher").onchange = async () => {
+  const generation = beginSelection();
   const file = $("cipher").files[0];
   if (!file || file.size > MAX_JWE_CHARS) {
     status("\uC791\uC740 \uAC00\uC0C1 JWE \uD30C\uC77C\uB9CC \uC120\uD0DD\uD558\uC138\uC694.");
     return;
   }
-  ciphertext = await file.text();
-  $("unlock").disabled = !state;
+  try {
+    selectCiphertext((await file.text()).trim(), generation);
+  } catch {
+    if (generation === epoch) status("\uAC00\uC0C1 \uD30C\uC77C\uC744 \uC77D\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+  }
 };
 $("unlock").onclick = () => open().catch((e) => status({ SETUP_REQUIRED: "\uBA3C\uC800 \uAC00\uC0C1 \uD0A4\uB97C \uC124\uC815\uD558\uC138\uC694.", BACKUP_UNLOCK_FAILED: "\uBCF5\uAD6C \uD0A4 \uC7A0\uAE08 \uD574\uC81C\uC5D0 \uC2E4\uD328\uD588\uC2B5\uB2C8\uB2E4. \uD14C\uC2A4\uD2B8 \uC554\uD638 \uB610\uB294 \uBCF5\uAD6C \uD30C\uC77C\uC744 \uD655\uC778\uD558\uC138\uC694.", DOCUMENT_INVALID_OR_KEY_MISMATCH: "\uD0A4\uB294 \uC5F4\uB838\uC9C0\uB9CC \uC804\uB7B5 \uD30C\uC77C \uAC80\uC99D\uC5D0 \uC2E4\uD328\uD588\uC2B5\uB2C8\uB2E4. \uD30C\uC77C \uB610\uB294 \uC5F0\uACB0\uB41C \uACF5\uAC1C\uD0A4\uB97C \uD655\uC778\uD558\uC138\uC694.", RENDER_FAILED: "\uBCF5\uD638\uD654\uB294 \uB05D\uB0AC\uC9C0\uB9CC \uD654\uBA74 \uD45C\uC2DC\uC5D0 \uC2E4\uD328\uD588\uC2B5\uB2C8\uB2E4." }[e.message] || "\uD14C\uC2A4\uD2B8 \uC624\uB958\uAC00 \uBC1C\uC0DD\uD588\uC2B5\uB2C8\uB2E4."));
 $("lock").onclick = () => {
@@ -1298,14 +1322,8 @@ window.demo = { getPublic: () => state?.config, getBackup: () => state?.backup, 
   commitState({ config, backup });
 }, lock: () => $("lock").click() };
 $("loadText").onclick = () => {
-  const text = $("cipherText").value.trim();
-  if (text.length > MAX_JWE_CHARS || text.split(".").length !== 5) {
-    status("\uAC00\uC0C1 JWE \uD615\uC2DD \uB610\uB294 \uD06C\uAE30\uB97C \uD655\uC778\uD558\uC138\uC694.");
-    return;
-  }
-  ciphertext = text;
-  $("unlock").disabled = !state;
-  status("\uAC00\uC0C1 \uC804\uB7B5\uC744 \uC120\uD0DD\uD588\uC2B5\uB2C8\uB2E4. \uC7A0\uAE08 \uD574\uC81C\uB97C \uB204\uB974\uC138\uC694.");
+  const generation = beginSelection();
+  selectCiphertext($("cipherText").value.trim(), generation);
 };
 $("restore").onclick = async () => {
   const generation = ++epoch;
@@ -1318,6 +1336,9 @@ $("restore").onclick = async () => {
     commitState({ config, backup });
     status("\uAC00\uC0C1 \uBC31\uC5C5\uC744 \uAC00\uC838\uC654\uC2B5\uB2C8\uB2E4. \uC7A0\uAE08 \uD574\uC81C \uD6C4 \uBCF5\uAD6C\uB97C \uD655\uC778\uD558\uC138\uC694.");
   } catch {
-    if (generation === epoch) status("\uAC00\uC0C1 \uACF5\uAC1C\uD0A4 \uB610\uB294 \uBCF5\uAD6C \uD30C\uC77C\uC774 \uC798\uBABB\uB418\uC5C8\uC2B5\uB2C8\uB2E4.");
+    if (generation === epoch) {
+      $("setup").disabled = !!state;
+      status("\uAC00\uC0C1 \uACF5\uAC1C\uD0A4 \uB610\uB294 \uBCF5\uAD6C \uD30C\uC77C\uC774 \uC798\uBABB\uB418\uC5C8\uC2B5\uB2C8\uB2E4.");
+    }
   }
 };
