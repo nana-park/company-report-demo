@@ -65,6 +65,11 @@ function renderReport(doc, cover, panels) {
     for (let i = 0; i < doc.tabs.length; i++) {
       let section;
       for (const block of doc.tabs[i].blocks) {
+        if (block.type === "heading" && block.text === "동일인 확인과 추가 후보") {
+          section=el("details",undefined,"card");
+          const summary=el("summary",block.text);
+          section.append(summary);panels[i].append(section);continue;
+        }
         if (!section || block.type === "heading") {section=el("article",undefined,"card");panels[i].append(section);}
         section.append(generic(block));
       }
