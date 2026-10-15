@@ -1,0 +1,212 @@
+<!-- offline-jd-analysis:bundle:v1 -->
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Product Owner (Growth)</title>
+<style>
+@font-face { font-family:Pretendard; src:url('../../../../../assets/fonts/PretendardVariable.woff2') format('woff2'); font-weight:100 900; font-display:swap; }
+:root { --page:#fff; --surface:#f9fafb; --heading:#18181b; --body:#27272a; --muted:#71717a; --line:#e5e7eb; --radius:8px; }
+* { box-sizing:border-box; }
+html { scroll-behavior:auto; scroll-padding-top:88px; }
+body { margin:0; min-width:0; color:var(--body); background:var(--page); font:14px/1.65 Pretendard,'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif; word-break:keep-all; overflow-wrap:anywhere; }
+a { color:inherit; text-underline-offset:3px; }
+a,summary { cursor:pointer; }
+:focus-visible { outline:2px solid var(--heading); outline-offset:4px; }
+.skip-link { position:absolute; left:20px; top:-80px; padding:10px; background:white; }
+.skip-link:focus { top:8px; }
+.shell { max-width:1040px; margin:auto; padding:32px 32px 64px; }
+.back-link { display:inline-flex; align-items:center; gap:8px; min-height:44px; margin:0 0 20px; font-size:13px; line-height:14px; font-weight:500; color:var(--muted); text-decoration:none; }
+.back-link svg { display:block; flex:0 0 14px; width:14px; height:14px; }
+.back-link span { display:block; line-height:14px; }
+.back-link:hover { color:var(--heading); text-decoration:underline; }
+@media print { .back-link { display:none!important; } }
+.eyebrow,.meta,.references { color:var(--muted); font-size:12px; }
+.eyebrow { letter-spacing:.025em; font-weight:600; }
+h1,h2,h3 { color:var(--heading); font-weight:500; }
+h1 { margin:8px 0 12px; font-size:32px; line-height:1.35; letter-spacing:-.04em; }
+h2 { font-size:18px; line-height:1.4; margin:0 0 14px; letter-spacing:-.025em; }
+h3 { font-size:15px; margin:0 0 8px; line-height:1.5; }
+p { margin:0 0 10px; }
+p:last-child { margin-bottom:0; }
+.meta { display:flex; gap:6px 16px; flex-wrap:wrap; }
+.status { margin-top:12px; color:var(--muted); font-size:12px; }
+.lead { font-size:15px; line-height:1.75; margin-top:20px; max-width:850px; }
+.lead p + p { margin-top:8px; }
+section { margin-top:30px; }
+.cards { display:grid; grid-template-columns:1fr; gap:12px; }
+.card { border:1px solid var(--line); border-radius:var(--radius); padding:18px; min-width:0; }
+.qualifications { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.qualifications .cards { grid-template-columns:1fr; }
+.references { margin-top:10px; }
+details { border:1px solid var(--line); border-radius:var(--radius); margin:10px 0; }
+summary { padding:15px 18px; font-size:14px; font-weight:600; line-height:1.6; }
+summary::marker { color:var(--muted); }
+.detail-body { border-top:1px solid var(--line); padding:16px 18px 18px; }
+dl { margin:0; }
+dt { font-size:12px; color:var(--muted); font-weight:600; margin-top:14px; }
+dt:first-child { margin-top:0; }
+dd { margin:4px 0 0; }
+ul { padding-left:20px; margin:0 0 12px; }
+li { margin:6px 0; }
+.table-wrap { overflow-x:auto; max-width:100%; margin:12px 0; }
+table { border-collapse:collapse; width:100%; font-size:13px; }
+th,td { border-bottom:1px solid var(--line); padding:10px; text-align:left; vertical-align:top; min-width:110px; }
+th { background:var(--surface); font-weight:600; }
+.sources { font-size:13px; }
+.sources li { margin:12px 0; scroll-margin-top:20px; }
+[id] { scroll-margin-top:20px; }
+footer { margin-top:32px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:12px; }
+@media (max-width:680px) {
+.shell { padding:20px 20px 40px; }
+h1 { font-size:28px; }
+.cards,.qualifications { grid-template-columns:1fr; }
+.qualifications { gap:0; }
+.card { padding:16px; }
+summary { padding:14px 16px; }
+.detail-body { padding:14px 16px 16px; }
+}
+@media print {
+body { font-size:10pt; }
+.shell { max-width:none; padding:0; }
+.back-link,.skip-link { display:none; }
+.cards,.qualifications { display:block; }
+.card { margin-bottom:10px; break-inside:avoid; }
+details > .detail-body { display:block!important; }
+details::details-content { display:block!important; content-visibility:visible!important; height:auto!important; }
+summary { list-style:none; }
+summary::marker { content:''; }
+.table-wrap { overflow:visible; }
+table { font-size:9pt; }
+th,td { min-width:0; }
+section,details { break-inside:auto; }
+h2,summary { break-after:avoid; }
+a { text-decoration:none; }
+}
+
+.original { color:var(--muted); font-size:13px; }
+.task-line { display:grid; grid-template-columns:70px 1fr; gap:12px; margin-top:8px; }
+.task-line dt,.task-line dd { margin:0; }
+.plain-list { list-style:none; padding:0; margin:0; }
+.plain-list li { margin:0 0 14px; }
+.muted { color:var(--muted); font-size:13px; }
+.application-row { display:grid; grid-template-columns:90px 1fr; gap:14px; padding:9px 0; border-bottom:1px solid var(--line); }
+.application-row dt,.application-row dd { margin:0; }
+.source-url { display:block; font-size:12px; color:var(--muted); overflow-wrap:anywhere; }
+.qualifications { grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr)); }
+/* Explicit semantic pairs keep both columns readable at narrow widths. */
+.competency-evidence { width:100%; table-layout:fixed; margin:14px 0 0; font-size:14px; }
+.competency-evidence th,.competency-evidence td { width:50%; min-width:0; padding:10px; overflow-wrap:anywhere; word-break:normal; vertical-align:top; }
+.competency-evidence th { font-size:13px; }
+.company-context .context-uncertainty { font-size:12px; }
+@media (max-width:680px) {
+.competency-evidence th,.competency-evidence td { padding:9px 8px; }
+}
+@media print { .competency-evidence { font-size:10pt; } }
+.tab-nav { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; gap: 16px; margin: 0 0 24px; padding: 12px 0; background: #fff; border-bottom: 1px solid var(--line); }
+.tab-nav a { display: inline-flex; flex: 1 1 160px; min-height: 44px; align-items: center; justify-content: center; padding: 8px 20px; border: 1px solid transparent; border-radius: 999px; color: #71717a; background: white; font-size: 14px; font-weight: 600; letter-spacing: -.025em; line-height: 1.5; text-decoration: none; }
+.tab-nav a:hover { background: #f3f4f6; color: #18181b; }
+.tab-nav a[aria-selected="true"] { background: #000000; border-color: #000000; color: white; }
+.tab-nav a[aria-selected="true"]:hover { background: #2a2a2a; }
+.jd-panel[hidden] { display:none; }
+@media (max-width:680px) {
+.tab-nav { gap:8px; }
+html { scroll-padding-top:132px; }
+.tab-nav a { flex-basis:calc(50% - 8px); padding:8px 20px; font-size:13px; }
+}
+@media print {
+.tab-nav { display:none!important; }
+.jd-panel[hidden] { display:block!important; }
+}
+.posting-link { display:inline-flex; align-items:center; gap:6px; }
+.posting-link svg { display:block; flex:0 0 14px; width:14px; height:14px; }
+/* Shared report header: canonical company-report spacing and typography. */
+.shell { max-width:1120px; margin:0 auto; padding:48px 40px 64px; }
+.cover { padding:0 0 24px; border-bottom:1px solid var(--line); }
+.cover .eyebrow { margin:0 0 12px; color:#a1a1aa; font-size:10px; font-weight:500; letter-spacing:.2em; line-height:1.5; text-transform:uppercase; }
+.cover h1 { margin:0; color:var(--heading); font-family:Pretendard,Inter,'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif; font-size:32px; font-weight:500; line-height:1.3; letter-spacing:-.025em; }
+.cover .report-meta { display:grid; grid-template-columns:1fr .6fr; gap:24px; margin:12px 0 0; }
+.cover .report-meta div { min-width:0; }
+.cover .report-meta dt { margin:0 0 4px; color:#a1a1aa; font-size:10px; font-weight:400; letter-spacing:.05em; line-height:1.65; }
+.cover .report-meta dd { margin:0; color:var(--muted); font-size:12px; font-weight:400; line-height:1.5; }
+.cover .header-note { margin:12px 0 0; color:var(--muted); font-size:12px; line-height:1.5; }
+@media(max-width:1023px) { .shell { padding:32px 24px 48px; } }
+@media(max-width:767px) { .shell { padding:24px 20px 40px; }.cover h1 { font-size:28px; }.cover .report-meta { grid-template-columns:1fr; gap:12px; } }
+@media print { .shell { max-width:none; padding:0; }.cover h1 { font-size:24pt; }.cover .report-meta { grid-template-columns:1fr .6fr; } }
+
+
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">본문으로 이동</a>
+<main class="shell" id="main">
+<a class="back-link" href="../../index.html" aria-label="공고별 지원 작업으로 돌아가기"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m10 3-5 5 5 5"/></svg><span>뒤로</span></a>
+<nav class="tab-nav" aria-label="JD 상세 분석"><a id="tab-tasks" href="#tasks" data-tab="tasks">핵심업무</a><a id="tab-preferred" href="#preferred" data-tab="preferred">우대사항</a><a id="tab-application" href="#application" data-tab="application">지원정보</a><a id="tab-context" href="#context" data-tab="context">회사맥락</a></nav>
+<header class="cover">
+<p class="eyebrow">JD 분석</p>
+<h1>Product Owner (Growth)</h1>
+<dl class="report-meta"><div><dt>회사</dt><dd>토스뱅크</dd></div><div><dt>기준일</dt><dd>2026-10-15</dd></div></dl>
+<p class="header-note"><a class="posting-link" href="https://toss.im/career/job-detail?job_id=4071413003&amp;company=%ED%86%A0%EC%8A%A4%EB%B1%85%ED%81%AC" target="_blank" rel="noopener noreferrer" aria-label="공식 채용 공고 (새 탭에서 열림)"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 2h5v5M14 2 7 9M7 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V9"/></svg><span>공식 채용 공고</span></a></p>
+</header>
+<div class="lead"><p>Growth Squad에서 신규 유저 획득과 전환을 늘리고, 유입 이후의 활성화·리텐션까지 연결하는 역할이다. 이벤트를 기획·운영하는 데서 끝나지 않고 고객 가치와 마케팅 비용, 고객 여정 지표를 함께 다룬다.</p><p>중점은 스스로 가설을 만들고 데이터로 검증해 반복 가능한 성장으로 이어가는 능력이다. 3년 이상 대고객 서비스 PM/PO로 그로스를 직접 수행하고 성과를 만든 경험을 요구한다.</p></div>
+<section class="jd-panel" id="tasks" aria-labelledby="tab-tasks"><h2 id="tasks-heading">핵심업무</h2><div class="cards"><article class="card"><h3>획득·전환을 만드는 고객 가치와 실험 설계<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a> <a href="#source-2" aria-label="출처 2">[2]</a></span></h3><p class="original">토스뱅크가 더 많은 유저들을 만날 수 있도록 다양한 이벤트와 실험을 기획하고 운영해요.
+고객이 토스뱅크를 찾아오고 싶게 만드는 가치를 고민하고 그 흐름을 설계해요.</p><p>진입 지면과 이벤트에서 고객이 들어오고 전환할 이유를 제품 흐름으로 만든다. 시장·고객 변화를 빠르게 실행으로 옮기되, 노출이나 방문 증가만으로 성과를 판단하지 않는 능력이 중요하다.</p><table class="competency-evidence"><thead><tr><th scope="col">중요 역량</th><th scope="col">필요 증거</th></tr></thead><tbody><tr><td>대고객 서비스의 성장 문제 정의와 가치·흐름 설계</td><td>고객·진입 지면별 이탈 또는 전환 문제, 고객 변화의 근거, 선택한 가설과 제품·이벤트 변경안, 실제 출시·운영 범위</td></tr><tr><td>바이럴·추천·공유 구조의 직접 기획·운영</td><td>참여자·초대자·피초대자의 흐름, 공유 유인과 전환 구조, 직접 결정한 운영 방식, 전환·공유 지표와 결과. 단순 홍보 참여와 구조 설계를 구분</td></tr></tbody></table></article><article class="card"><h3>비용부터 활성화·리텐션까지 고객 여정 관리<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a> <a href="#source-4" aria-label="출처 4">[4]</a></span></h3><p class="original">또한 마케팅의 적정 비용을 고민하고 이후에 활성화로 이어지는 고객 여정 전반의 지표를 함께 관리해요.
+새롭게 유입된 고객이 토스뱅크에 안정적으로 자리를 잡을 수 있도록, 그리고 기존 고객은 토스뱅크를 더 자주 이용할 이유를 만들고 있어요.</p><p>마케팅의 적정 비용과 유입 이후 이용을 함께 본다. 전환·공유·리텐션 등 퍼널의 세부 숫자로 성장의 질을 판단하는 역량이 핵심이다. 고객 수 증가를 활성화나 잔존 개선과 같은 결과로 취급하지 않는다.</p><table class="competency-evidence"><thead><tr><th scope="col">중요 역량</th><th scope="col">필요 증거</th></tr></thead><tbody><tr><td>고객 여정의 데이터 기반 의사결정</td><td>퍼널 단계·분모·기간과 고객 집단을 정의한 분석, 발견한 병목, 비용과 후속 행동을 함께 비교한 결정, 변경 전후 결과와 다른 영향 요인</td></tr><tr><td>활성화 또는 리텐션 가설·실험 개선</td><td>활성화 행동 또는 재이용의 정의, 비교 기준과 관측 기간, 직접 설계한 실험, 개선·유지·악화 결과 및 한계. 특정 활성화 정의·목표치는 공고에 없음</td></tr></tbody></table></article><article class="card"><h3>실험 학습을 반복 가능한 성장과 상품 확장으로 연결<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a> <a href="#source-3" aria-label="출처 3">[3]</a></span></h3><p class="original">많은 실험을 통해 검증된 토스의 Growth 공식을 고도화 해나갈 뿐 아니라 새로운 가설을 고민하며 더 큰 임팩트를 만들 방법을 찾아요.
+여러 상품팀과 협업하며 신규상품의 출시, 확장, 성장을 위한 이벤트도 함께 만들어가요.</p><p>기존 Growth 공식을 고도화하면서 새 가설을 검증하고, 여러 상품팀과 출시·확장 이벤트를 만든다. 단발성 성공보다 어떤 조건에서 효과가 다시 나타나는지 확인하는 능력과 폭넓은 오너십이 수행을 뒷받침한다.</p><table class="competency-evidence"><thead><tr><th scope="col">중요 역량</th><th scope="col">필요 증거</th></tr></thead><tbody><tr><td>가설 수립·검증과 반복 가능한 학습</td><td>문제 정의 → 가설 수립 → 액션 및 검증 → 결과의 연결, 성공·실패 판단 기준, 재실험에서 유지된 조건과 달라진 결과, 다음 결정에 반영한 러닝</td></tr><tr><td>상품팀과의 협업 및 성장 오너십</td><td>본인이 맡은 의사결정·조율 범위, 상품팀별 제약과 우선순위, 출시·확장 이벤트의 실행 기록, 직접 기여와 공동 성과의 구분</td></tr></tbody></table></article></div><div class="qualification-group"><h3>직무 지원자격</h3><ul class="plain-list"><li><p>3년 이상 PM/PO로 대고객 서비스에서 그로스를 직접 경험하고 성과를 만들어보신 분을 찾고 있어요.<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></p><p class="muted">직무 특정 경력·수행 조건 · 3년 이상이라는 기간과 PM/PO 역할, 대고객 서비스의 직접 그로스 수행·성과를 함께 요구한다. 재직 기간만으로 수행 수준을 대체하거나 은행 경력 필수로 확대하지 않는다.</p></li><li><p>주어진 일을 단순히 실행하는 데에 그치지 않고, 스스로 가설을 수립하고 실험으로 검증해오신 분이 필요해요.<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></p><p class="muted">핵심 · 지시된 실행만이 아니라 스스로 가설을 만들고 실험으로 검증한 책임이 핵심이다.</p></li><li><p>본인의 감이 아니라 데이터에 기반해 의사결정하는 데이터 드리븐 사고방식을 가진 분이 필요해요.<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></p><p class="muted">핵심 · 데이터가 실제 선택·우선순위·중단 또는 확대 결정을 바꾼 근거가 필요하다. 특정 분석 도구는 명시하지 않는다.</p></li><li><p>유입 지표를 넘어 전환, 공유, 리텐션과 같은 퍼널 이면의 숫자까지 깊이 들여다본 경험이 있으신 분을 찾아요.<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></p><p class="muted">핵심 · 획득 이후 전환·공유·리텐션의 구조와 병목을 깊이 본 경험이다. 유입 숫자 하나의 개선으로 같은 범위를 입증할 수는 없다.</p></li><li><p>시장 트렌드와 고객의 변화에 민감하고, 그 흐름을 제품으로 빠르게 풀어내는 감각을 가진 분이 필요해요.<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></p><p class="muted">핵심 · 시장·고객의 변화를 관찰하고 실제 제품 변화로 신속히 연결한 판단·실행을 뜻한다. 트렌드 지식만으로 대체하지 않는다.</p></li></ul></div></section><section class="jd-panel" id="preferred" aria-labelledby="tab-preferred"><h2 id="preferred-heading">우대사항</h2><ul class="plain-list"><li><p>바이럴·추천·공유 스킴을 직접 기획하고 운영해본 경험<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></p><p class="muted">핵심업무와 직접 연결 · 획득·전환 업무와 직접 연결되는 우대다. 구조를 직접 설계하고 운영한 범위와 공유 이후 행동까지 확인한다.</p></li><li><p>고객 활성화나 리텐션 지표를 가설·실험으로 개선해본 경험<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></p><p class="muted">핵심업무와 직접 연결 · 고객 여정 관리의 핵심 책임을 강화하는 우대다. 활성화나 리텐션 중 실제 개선한 대상을 보존하며, 두 지표 모두 개선한 것으로 확대하지 않는다.</p></li><li><p>조직 내에서 폭넓은 오너십을 갖고 제품의 성장을 이끌어본 경험<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></p><p class="muted">핵심업무와 직접 연결 · 여러 상품팀의 성장 업무를 연결하는 실행 수준을 보여주는 우대다. 직함보다 실제 결정·조율·책임 범위가 중요하다.</p></li><li><p>성공을 일회성이 아닌 반복 가능한 패턴으로 만들어본 경험<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></p><p class="muted">핵심업무와 직접 연결 · 기존 Growth 공식 고도화와 새 가설 검증에 직접 연결된다. 첫 성공 이후 재현·확장 조건과 반복 결과가 필요하며, 일회성 상승만으로 반복 가능성을 단정하지 않는다.</p></li></ul></section><section class="jd-panel" id="application" aria-labelledby="tab-application"><h2 id="application-heading">지원정보</h2><dl class="application"><div class="application-row"><dt>소속·고용형태</dt><dd>Growth Squad · 토스뱅크 · 정규직<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></dd></div><div class="application-row"><dt>지원 방법</dt><dd>공식 채용 공고의 Apply에서 지원<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></dd></div><div class="application-row"><dt>필수 제출물</dt><dd>이력서 및 경력기술서: 자유양식, 한 개의 파일로 통합 제출. PDF 권장, 파일 최대 50MB.<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></dd></div><div class="application-row"><dt>선택 제출물</dt><dd>포트폴리오: 선택사항, PDF 권장.<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></dd></div><div class="application-row"><dt>전형</dt><dd>서류접수 → 직무 인터뷰 → 문화적합성 인터뷰 → 레퍼런스 체크 → 처우 협의 → 최종 합격 및 입사<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></dd></div><div class="application-row"><dt>마감</dt><dd>본문에 마감일 명시 없음<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></dd></div></dl></section><section class="jd-panel" id="context" aria-labelledby="tab-context"><h2 id="context-heading">회사맥락</h2><table class="competency-evidence company-context"><thead><tr><th scope="col">기업조사 내용</th><th scope="col">JD와의 연결</th></tr></thead><tbody><tr><td>기존 기업 조사에서 확인한 토스뱅크 상품군은 통장·예금·적금부터 모임통장, 대출, 외환, 제휴 금융상품까지 이어진다.<span class="references"> <a href="#source-2" aria-label="출처 2">[2]</a> <a href="#source-1" aria-label="출처 1">[1]</a></span></td><td><p>상품별 고객 목적과 진입 경로가 달라 여러 상품팀과 출시·성장 이벤트를 연결하는 능력이 중요하다.</p><p class="muted context-uncertainty">미확인: 이 공고가 담당할 개별 상품과 이벤트는 공개되지 않았다.</p></td></tr><tr><td>기존 기업 조사에 수록된 회사 발표 인용 보도에서 2026년 6월말 고객 수는 1,566만명이다. 이는 활성고객이나 MAU가 아닌 고객 수다.<span class="references"> <a href="#source-4" aria-label="출처 4">[4]</a> <a href="#source-1" aria-label="출처 1">[1]</a></span></td><td><p>신규 획득과 실제 이용·재이용을 구분하는 해석이 필요하다. JD가 활성화·리텐션을 별도로 요구하는 이유와 맞닿는다.</p><p class="muted context-uncertainty">미확인: 이 규모만으로 Growth Squad의 목표치·전환율·실제 성과를 추정할 수 없다.</p></td></tr><tr><td>공식 목돈 굴리기 사례는 첫 구매·반복 이용 고객의 여정을 조사한 뒤 상품 나열을 자금 목적·투자 방식 중심 구조로 바꾼 과정을 설명한다.<span class="references"> <a href="#source-3" aria-label="출처 3">[3]</a> <a href="#source-1" aria-label="출처 1">[1]</a></span></td><td><p>성장 문제를 광고나 유입만의 문제로 한정하지 않고, 고객 가치와 후속 행동을 제품 흐름에 연결해야 한다는 구체적 회사 맥락이다.</p><p class="muted context-uncertainty">미확인: Growth Squad가 수행한 프로젝트라는 근거는 없으며 공개 개선율·실험 기간도 없어 이 팀의 실적으로 인용하지 않는다.</p></td></tr></tbody></table></section><section aria-labelledby="sources-heading"><h2 id="sources-heading">출처</h2><ol class="sources"><li id="source-1"><a href="https://toss.im/career/job-detail?job_id=4071413003&amp;company=%ED%86%A0%EC%8A%A4%EB%B1%85%ED%81%AC" rel="noopener noreferrer">Product Owner · Growth · 토스뱅크 공식 채용 공고</a><span class="source-url">https://toss.im/career/job-detail?job_id=4071413003&amp;company=%ED%86%A0%EC%8A%A4%EB%B1%85%ED%81%AC</span><p class="muted">2026-10-15 공식 페이지 본문 확인. 제목 Product Owner, 부제 Growth. 게시·수정일 미표기.</p></li><li id="source-2"><a href="https://www.tossbank.com/" rel="noopener noreferrer">토스뱅크 공식 홈페이지 및 상품 목록</a><span class="source-url">https://www.tossbank.com/</span><p class="muted">기존 기업 조사 재사용 · 원자료 확인일 2026-10-15 · 동일 법인 사실만 연결</p></li><li id="source-3"><a href="https://toss.tech/article/36873" rel="noopener noreferrer">진짜 문제 발견을 위해, 사용자 여정 함께 걸어보기</a><span class="source-url">https://toss.tech/article/36873</span><p class="muted">기존 기업 조사 재사용 · 원자료 확인일 2026-10-15 · 발표일 2025-05-27 · 동일 법인 사실만 연결</p></li><li id="source-4"><a href="https://www.newsis.com/view/NISX20260831_0003769357" rel="noopener noreferrer">토스뱅크, 상반기 순이익 589억</a><span class="source-url">https://www.newsis.com/view/NISX20260831_0003769357</span><p class="muted">기존 기업 조사 재사용 · 원자료 확인일 2026-10-15 · 발표일 2026-08-31 · 동일 법인 사실만 연결</p></li></ol></section>
+</main>
+<script>
+(function () {
+  'use strict';
+  var nav = document.querySelector('.tab-nav');
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-tab]'));
+  var panels = tabs.map(function (tab) { return document.getElementById(tab.getAttribute('href').slice(1)); });
+  if (!nav || tabs.length !== 4 || panels.some(function (panel) { return !panel; })) return;
+  function activate(index, focus, resetScroll) {
+    tabs.forEach(function (tab, i) {
+      tab.setAttribute('aria-selected', String(i === index));
+      tab.tabIndex = i === index ? 0 : -1;
+      panels[i].hidden = i !== index;
+    });
+    if (focus) tabs[index].focus();
+    // Only deliberate tab selection resets reading position; hash/history restoration stays native.
+    if (resetScroll) window.scrollTo(0, 0);
+  }
+  nav.setAttribute('role', 'tablist');
+  tabs.forEach(function (tab, index) {
+    tab.setAttribute('role', 'tab');
+    tab.setAttribute('aria-controls', panels[index].id);
+    panels[index].setAttribute('role', 'tabpanel');
+    panels[index].tabIndex = 0;
+    tab.addEventListener('click', function (event) {
+      event.preventDefault();
+      activate(index, false, true);
+      if (window.history && window.history.replaceState) window.history.replaceState(null, '', '#' + panels[index].id);
+    });
+    tab.addEventListener('keydown', function (event) {
+      var next = index;
+      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+      else if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = tabs.length - 1;
+      else if (event.key === ' ' || event.key === 'Enter') next = index;
+      else return;
+      event.preventDefault();
+      activate(next, true, true);
+    });
+  });
+  function activateHash() {
+    if (window.location.hash === "#summary") { activate(0, false); return; }
+    var index = panels.findIndex(function (panel) { return '#' + panel.id === window.location.hash; });
+    if (index >= 0) activate(index, false);
+  }
+  activate(0, false);
+  activateHash();
+  window.addEventListener('hashchange', activateHash);
+}());
+</script>
+</body>
+</html>
+
+

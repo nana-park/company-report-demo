@@ -1,0 +1,212 @@
+<!-- offline-jd-analysis:bundle:v1 -->
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Product Manager (LLM)</title>
+<style>
+@font-face { font-family:Pretendard; src:url('../../../../../assets/fonts/PretendardVariable.woff2') format('woff2'); font-weight:100 900; font-display:swap; }
+:root { --page:#fff; --surface:#f9fafb; --heading:#18181b; --body:#27272a; --muted:#71717a; --line:#e5e7eb; --radius:8px; }
+* { box-sizing:border-box; }
+html { scroll-behavior:auto; scroll-padding-top:88px; }
+body { margin:0; min-width:0; color:var(--body); background:var(--page); font:14px/1.65 Pretendard,'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif; word-break:keep-all; overflow-wrap:anywhere; }
+a { color:inherit; text-underline-offset:3px; }
+a,summary { cursor:pointer; }
+:focus-visible { outline:2px solid var(--heading); outline-offset:4px; }
+.skip-link { position:absolute; left:20px; top:-80px; padding:10px; background:white; }
+.skip-link:focus { top:8px; }
+.shell { max-width:1040px; margin:auto; padding:32px 32px 64px; }
+.back-link { display:inline-flex; align-items:center; gap:8px; min-height:44px; margin:0 0 20px; font-size:13px; line-height:14px; font-weight:500; color:var(--muted); text-decoration:none; }
+.back-link svg { display:block; flex:0 0 14px; width:14px; height:14px; }
+.back-link span { display:block; line-height:14px; }
+.back-link:hover { color:var(--heading); text-decoration:underline; }
+@media print { .back-link { display:none!important; } }
+.eyebrow,.meta,.references { color:var(--muted); font-size:12px; }
+.eyebrow { letter-spacing:.025em; font-weight:600; }
+h1,h2,h3 { color:var(--heading); font-weight:500; }
+h1 { margin:8px 0 12px; font-size:32px; line-height:1.35; letter-spacing:-.04em; }
+h2 { font-size:18px; line-height:1.4; margin:0 0 14px; letter-spacing:-.025em; }
+h3 { font-size:15px; margin:0 0 8px; line-height:1.5; }
+p { margin:0 0 10px; }
+p:last-child { margin-bottom:0; }
+.meta { display:flex; gap:6px 16px; flex-wrap:wrap; }
+.status { margin-top:12px; color:var(--muted); font-size:12px; }
+.lead { font-size:15px; line-height:1.75; margin-top:20px; max-width:850px; }
+.lead p + p { margin-top:8px; }
+section { margin-top:30px; }
+.cards { display:grid; grid-template-columns:1fr; gap:12px; }
+.card { border:1px solid var(--line); border-radius:var(--radius); padding:18px; min-width:0; }
+.qualifications { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.qualifications .cards { grid-template-columns:1fr; }
+.references { margin-top:10px; }
+details { border:1px solid var(--line); border-radius:var(--radius); margin:10px 0; }
+summary { padding:15px 18px; font-size:14px; font-weight:600; line-height:1.6; }
+summary::marker { color:var(--muted); }
+.detail-body { border-top:1px solid var(--line); padding:16px 18px 18px; }
+dl { margin:0; }
+dt { font-size:12px; color:var(--muted); font-weight:600; margin-top:14px; }
+dt:first-child { margin-top:0; }
+dd { margin:4px 0 0; }
+ul { padding-left:20px; margin:0 0 12px; }
+li { margin:6px 0; }
+.table-wrap { overflow-x:auto; max-width:100%; margin:12px 0; }
+table { border-collapse:collapse; width:100%; font-size:13px; }
+th,td { border-bottom:1px solid var(--line); padding:10px; text-align:left; vertical-align:top; min-width:110px; }
+th { background:var(--surface); font-weight:600; }
+.sources { font-size:13px; }
+.sources li { margin:12px 0; scroll-margin-top:20px; }
+[id] { scroll-margin-top:20px; }
+footer { margin-top:32px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:12px; }
+@media (max-width:680px) {
+.shell { padding:20px 20px 40px; }
+h1 { font-size:28px; }
+.cards,.qualifications { grid-template-columns:1fr; }
+.qualifications { gap:0; }
+.card { padding:16px; }
+summary { padding:14px 16px; }
+.detail-body { padding:14px 16px 16px; }
+}
+@media print {
+body { font-size:10pt; }
+.shell { max-width:none; padding:0; }
+.back-link,.skip-link { display:none; }
+.cards,.qualifications { display:block; }
+.card { margin-bottom:10px; break-inside:avoid; }
+details > .detail-body { display:block!important; }
+details::details-content { display:block!important; content-visibility:visible!important; height:auto!important; }
+summary { list-style:none; }
+summary::marker { content:''; }
+.table-wrap { overflow:visible; }
+table { font-size:9pt; }
+th,td { min-width:0; }
+section,details { break-inside:auto; }
+h2,summary { break-after:avoid; }
+a { text-decoration:none; }
+}
+
+.original { color:var(--muted); font-size:13px; }
+.task-line { display:grid; grid-template-columns:70px 1fr; gap:12px; margin-top:8px; }
+.task-line dt,.task-line dd { margin:0; }
+.plain-list { list-style:none; padding:0; margin:0; }
+.plain-list li { margin:0 0 14px; }
+.muted { color:var(--muted); font-size:13px; }
+.application-row { display:grid; grid-template-columns:90px 1fr; gap:14px; padding:9px 0; border-bottom:1px solid var(--line); }
+.application-row dt,.application-row dd { margin:0; }
+.source-url { display:block; font-size:12px; color:var(--muted); overflow-wrap:anywhere; }
+.qualifications { grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr)); }
+/* Explicit semantic pairs keep both columns readable at narrow widths. */
+.competency-evidence { width:100%; table-layout:fixed; margin:14px 0 0; font-size:14px; }
+.competency-evidence th,.competency-evidence td { width:50%; min-width:0; padding:10px; overflow-wrap:anywhere; word-break:normal; vertical-align:top; }
+.competency-evidence th { font-size:13px; }
+.company-context .context-uncertainty { font-size:12px; }
+@media (max-width:680px) {
+.competency-evidence th,.competency-evidence td { padding:9px 8px; }
+}
+@media print { .competency-evidence { font-size:10pt; } }
+.tab-nav { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; gap: 16px; margin: 0 0 24px; padding: 12px 0; background: #fff; border-bottom: 1px solid var(--line); }
+.tab-nav a { display: inline-flex; flex: 1 1 160px; min-height: 44px; align-items: center; justify-content: center; padding: 8px 20px; border: 1px solid transparent; border-radius: 999px; color: #71717a; background: white; font-size: 14px; font-weight: 600; letter-spacing: -.025em; line-height: 1.5; text-decoration: none; }
+.tab-nav a:hover { background: #f3f4f6; color: #18181b; }
+.tab-nav a[aria-selected="true"] { background: #000000; border-color: #000000; color: white; }
+.tab-nav a[aria-selected="true"]:hover { background: #2a2a2a; }
+.jd-panel[hidden] { display:none; }
+@media (max-width:680px) {
+.tab-nav { gap:8px; }
+html { scroll-padding-top:132px; }
+.tab-nav a { flex-basis:calc(50% - 8px); padding:8px 20px; font-size:13px; }
+}
+@media print {
+.tab-nav { display:none!important; }
+.jd-panel[hidden] { display:block!important; }
+}
+.posting-link { display:inline-flex; align-items:center; gap:6px; }
+.posting-link svg { display:block; flex:0 0 14px; width:14px; height:14px; }
+/* Shared report header: canonical company-report spacing and typography. */
+.shell { max-width:1120px; margin:0 auto; padding:48px 40px 64px; }
+.cover { padding:0 0 24px; border-bottom:1px solid var(--line); }
+.cover .eyebrow { margin:0 0 12px; color:#a1a1aa; font-size:10px; font-weight:500; letter-spacing:.2em; line-height:1.5; text-transform:uppercase; }
+.cover h1 { margin:0; color:var(--heading); font-family:Pretendard,Inter,'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif; font-size:32px; font-weight:500; line-height:1.3; letter-spacing:-.025em; }
+.cover .report-meta { display:grid; grid-template-columns:1fr .6fr; gap:24px; margin:12px 0 0; }
+.cover .report-meta div { min-width:0; }
+.cover .report-meta dt { margin:0 0 4px; color:#a1a1aa; font-size:10px; font-weight:400; letter-spacing:.05em; line-height:1.65; }
+.cover .report-meta dd { margin:0; color:var(--muted); font-size:12px; font-weight:400; line-height:1.5; }
+.cover .header-note { margin:12px 0 0; color:var(--muted); font-size:12px; line-height:1.5; }
+@media(max-width:1023px) { .shell { padding:32px 24px 48px; } }
+@media(max-width:767px) { .shell { padding:24px 20px 40px; }.cover h1 { font-size:28px; }.cover .report-meta { grid-template-columns:1fr; gap:12px; } }
+@media print { .shell { max-width:none; padding:0; }.cover h1 { font-size:24pt; }.cover .report-meta { grid-template-columns:1fr .6fr; } }
+
+
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">본문으로 이동</a>
+<main class="shell" id="main">
+<a class="back-link" href="../../index.html" aria-label="공고별 지원 작업으로 돌아가기"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m10 3-5 5 5 5"/></svg><span>뒤로</span></a>
+<nav class="tab-nav" aria-label="JD 상세 분석"><a id="tab-tasks" href="#tasks" data-tab="tasks">핵심업무</a><a id="tab-preferred" href="#preferred" data-tab="preferred">우대사항</a><a id="tab-application" href="#application" data-tab="application">지원정보</a><a id="tab-context" href="#context" data-tab="context">회사맥락</a></nav>
+<header class="cover">
+<p class="eyebrow">JD 분석</p>
+<h1>Product Manager (LLM)</h1>
+<dl class="report-meta"><div><dt>회사</dt><dd>토스뱅크</dd></div><div><dt>기준일</dt><dd>2026-10-15</dd></div></dl>
+<p class="header-note"><a class="posting-link" href="https://toss.im/career/job-detail?job_id=7611090003&amp;company=%ED%86%A0%EC%8A%A4%EB%B1%85%ED%81%AC" target="_blank" rel="noopener noreferrer" aria-label="공식 채용 공고 (새 탭에서 열림)"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 2h5v5M14 2 7 9M7 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V9"/></svg><span>공식 채용 공고</span></a></p>
+</header>
+<div class="lead"><p>ML Service Team에서 AI/ML 제품을 발굴·기획하고 구현·운영·개선까지 이끄는 역할이다. 대고객 제품과 내부 제품을 모두 대상으로 한다.</p><p>중점은 기술을 실제 사용자 경험과 비즈니스 성과로 연결하는 것이다. 기술·비즈니스·규제의 제약을 조율하고, 지표와 실험으로 학습하며 필요하면 문제 자체를 다시 정의한다.</p></div>
+<section class="jd-panel" id="tasks" aria-labelledby="tab-tasks"><h2 id="tasks-heading">핵심업무</h2><div class="cards"><article class="card"><h3>AI 제품의 문제·경험을 정의하고 끝까지 실행<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></h3><p class="original">AI, ML 기반 제품을 기획하고, 개선 사이클을 End-to-End로 리딩해요.
+다양한 AI, ML 기술이 토스뱅크의 대고객 또는 내부 제품에서 실제로 어떻게 동작해야 하는지를 정의하고 실행해요.
+AI 기반 사용자 경험과 비즈니스 구조를 장기적인 관점에서 고민하고 설계해요.</p><p>AI 기술이 어떤 문제를 해결하며 제품 안에서 어떻게 동작해야 하는지 정하고, 기획부터 운영·개선까지 책임진다. 기술 구현만으로 끝내지 않고 사용자 반응에 따라 방향을 바꾸는 책임이 업무와 동료 메시지에 일관되게 나타난다.</p><table class="competency-evidence"><thead><tr><th scope="col">중요 역량</th><th scope="col">필요 증거</th></tr></thead><tbody><tr><td>문제 재정의와 AI 기반 사용자 경험 설계</td><td>최초 문제·사용자 또는 내부 이용자의 필요, AI 적용 및 비적용 대안, 동작 흐름을 정한 근거, 사용자 반응에 따라 문제나 방향을 바꾼 기록</td></tr><tr><td>불확실한 과제의 End-to-End 리딩</td><td>기술 난이도나 불확실성이 무엇이었는지, 본인이 내린 결정과 실행 범위, 기획·구현·운영·개선의 연결, 해결되지 않은 한계</td></tr><tr><td>장기 사용자 경험과 비즈니스 구조의 연결</td><td>단기 실험이 장기 제품 방향에 미치는 영향, 운영·확장 조건과 단계별 판단. 장기 성과를 관측하지 않았다면 계획과 실제 결과를 구분</td></tr></tbody></table></article><article class="card"><h3>기술·비즈니스·규제 요구를 제품 설계로 연결<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a> <a href="#source-4" aria-label="출처 4">[4]</a> <a href="#source-2" aria-label="출처 2">[2]</a></span></h3><p class="original">Data Scientist, ML Engineer와 긴밀하게 협업하며 기술과 제품을 연결해요.
+복잡한 기술/비즈니스/규제 요구사항을 이해하고, 개발자와 함께 도메인을 설계하며 전략적으로 문제를 풀어가요.</p><p>Data Scientist·ML Engineer·개발자와 기술적 가능성, 비즈니스 목적, 규제 요구를 함께 이해하고 도메인을 설계한다. 개발 일정 조율에 그치지 않고 어떤 제품 동작이 가능하고 적절한지 판단하는 일이 중요하다.</p><table class="competency-evidence"><thead><tr><th scope="col">중요 역량</th><th scope="col">필요 증거</th></tr></thead><tbody><tr><td>기술적 타당성과 사업 가치를 함께 판단</td><td>검토한 기술 대안·제약, 기대 효과와 비용·위험의 비교, 선택·축소·중단 근거 및 단계별 검증 결과</td></tr><tr><td>개발자와의 도메인 설계·복잡한 문제 해결</td><td>Data Scientist·ML Engineer 등 협업자의 역할, 기술/비즈니스/규제 요구의 충돌, 함께 정한 도메인·인터페이스·운영 책임과 본인 기여</td></tr><tr><td>ML 제품·시스템의 설계 및 운영 경험을 활용</td><td>실제로 설계한 제품 또는 시스템의 범위, 운영에서 관측한 문제와 변경, 사용자 영향과 결과. 실무 경험은 우대이며 모든 지원자의 필수 경력으로 만들지 않음</td></tr><tr><td>이해관계자와 개발 방식 개선</td><td>기획·디자인·개발·운영·제휴사 등 실제 협업 상대, 프로세스나 문화 변화에 관여한 범위와 관측 결과. 열거된 모든 직군 협업을 요구하지 않음</td></tr></tbody></table></article><article class="card"><h3>비즈니스 임팩트·지표·실험으로 제품 개선<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a> <a href="#source-4" aria-label="출처 4">[4]</a></span></h3><p class="original">비즈니스 임팩트를 정의하고, Metric을 설계하며 A/B 테스트 기반의 실험과 반복(Iteration)을 통해 제품을 고도화해요.</p><p>무엇이 좋아져야 하는지 먼저 정의하고 Metric과 A/B 테스트 기반 실험·반복으로 제품을 고도화한다. 기술 성능뿐 아니라 실제 사용자 반응과 단계적 사업 성과를 함께 보는 실행력이 중점이다.</p><table class="competency-evidence"><thead><tr><th scope="col">중요 역량</th><th scope="col">필요 증거</th></tr></thead><tbody><tr><td>비즈니스 임팩트와 Metric 설계</td><td>해결하려는 문제와 지표 사이의 연결, 기준값·측정 범위·기간, 성공 판단 기준과 부작용 확인 방식. 회사의 실제 KPI·목표치는 공개되지 않음</td></tr><tr><td>A/B 테스트와 반복 개선</td><td>가설·비교 조건·실험 설계·관측 결과, 결과 해석의 한계, 유지·변경·중단 결정과 다음 실험으로 이어진 흐름</td></tr><tr><td>본인 기여를 설명할 수 있는 단계적 성과</td><td>본인이 바꾼 결정·행동, 수치 성과 또는 사업 지표 변화, 협업 기여와 외부 요인, 성과를 내지 못한 시도의 학습</td></tr></tbody></table></article></div><div class="qualification-group"><h3>직무 지원자격</h3><ul class="plain-list"><li><p>AI Agent, LLM, ML 을 활용한 서비스 경험이나 강한 관심이 있는 분이 필요해요.<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></p><p class="muted">명시적 필요 · 서비스 경험 또는 강한 관심이라는 대안을 유지한다. AI Agent·LLM·ML 모두에 대한 실무 경력을 동시에 요구하거나 특정 도구를 필수화하지 않는다.</p></li><li><p>기술적 난이도가 높거나 불확실성이 큰 과제를 끝까지 리딩한 경험이 있는 분이 필요해요.<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></p><p class="muted">명시적 필요 · 높은 기술 난이도 또는 큰 불확실성이 있는 과제를 끝까지 이끈 경험을 요구한다. 단순 참여나 일정 관리와 수행 책임을 구분한다.</p></li><li><p>비즈니스 임팩트와 기술적 타당성을 함께 고려하며 단계적 성과를 만들 줄 아는 실행력을 갖춘 분이 필요해요.<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></p><p class="muted">명시적 필요 · 기술 가능성과 비즈니스 임팩트를 함께 판단해 단계적 결과를 만드는 실행력이 필요하다. 모델 구현이나 사업 아이디어 어느 한쪽만으로 책임 전체를 대신하지 않는다.</p></li><li><p>주어진 문제를 그대로 실행하기보다는, 문제를 종합적으로 사고하고 필요시 재정의하여 더 나은 방향으로 이끄는 분과 함께하고 싶어요.<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></p><p class="muted">기대 역량 · 공식 섹션은 ‘이런 분과 함께하고 싶어요’이며 필수/우대 구획을 따로 나누지 않는다. 문제 재정의와 종합적 사고에 대한 기대다. “함께하고 싶어요” 표현을 유지하며 별도의 정량 자격·연차 조건으로 만들지 않는다.</p></li></ul></div></section><section class="jd-panel" id="preferred" aria-labelledby="tab-preferred"><h2 id="preferred-heading">우대사항</h2><ul class="plain-list"><li><p>단순한 프로젝트 관리가 아니라, 전사 개발 프로세스나 문화를 바꾸는 데까지 관여하며 다양한 이해관계자(기획/디자인/개발/운영/제휴사 등)와 함께 더 강한 팀을 만들어 가고 싶은 분이면 좋아요.<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></p><p class="muted">핵심 수행을 보완하는 선호 · 원문은 “좋아요”라는 선호 표현이다. 전사 개발 프로세스·문화 변화에 관여하며 협업 팀을 강화하려는 지향을 뜻하며 이미 전사 개혁을 완료한 경력을 필수로 만들지 않는다.</p></li><li><p>머신러닝 기반 제품 또는 시스템을 설계하고 운영해 본 실무 경험이 있다면 더욱 좋아요.<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></p><p class="muted">핵심 수행을 보완하는 선호 · 머신러닝 기반 제품 또는 시스템을 설계하고 운영한 실무 경험은 “더욱 좋아요”라고 명시한다. 중요한 수행 증거가 될 수 있지만 필수 AI 실무 경력으로 강화하지 않는다.</p></li></ul></section><section class="jd-panel" id="application" aria-labelledby="tab-application"><h2 id="application-heading">지원정보</h2><dl class="application"><div class="application-row"><dt>소속·고용형태</dt><dd>토스뱅크 · ML Service Team · 정규직<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></dd></div><div class="application-row"><dt>제출물</dt><dd>이력서·경력기술서 필수(한 파일로 제출, 자유 형식·PDF 권장). 포트폴리오 선택. 첨부 안내는 최대 50MB이며 오류 발생 시 이력서와 포트폴리오 합산 50MB 미만을 확인하도록 설명한다.<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></dd></div><div class="application-row"><dt>지원 방법</dt><dd>공식 채용 페이지에서 지원<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></dd></div><div class="application-row"><dt>전형</dt><dd>서류접수 &gt; 직무 인터뷰 &gt; 문화적합성 인터뷰 &gt; 레퍼런스 체크 &gt; 처우 협의 &gt; 최종 합격 및 입사<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></dd></div><div class="application-row"><dt>마감</dt><dd>마감일 명시 없음<span class="references"> <a href="#source-1" aria-label="출처 1">[1]</a></span></dd></div></dl></section><section class="jd-panel" id="context" aria-labelledby="tab-context"><h2 id="context-heading">회사맥락</h2><table class="competency-evidence company-context"><thead><tr><th scope="col">기업조사 내용</th><th scope="col">JD와의 연결</th></tr></thead><tbody><tr><td>토스뱅크 ML 조직의 공개 채용 자료는 금융 상담, 신분증·서류 자동화, 사내 LLM 플랫폼 등 대고객·내부 업무 활용을 소개한다.<span class="references"> <a href="#source-3" aria-label="출처 3">[3]</a> <a href="#source-1" aria-label="출처 1">[1]</a></span></td><td><p>이 공고의 대고객 또는 내부 제품 범위를 함께 이해할 수 있다. 이용자와 성공 기준을 실제 제품에 맞게 정의하는 능력이 중요하다.</p><p class="muted context-uncertainty">미확인: ML Service Team의 개별 담당 제품·우선순위는 미공개다. ML Tribe 전체 영역을 이 직무에 전부 배정하지 않는다.</p></td></tr><tr><td>공식 신분증 AI 사례는 정상 신분증의 오반려를 줄이는 기준, 중간 구간의 관리자 검증 보조, 사람의 최종 승인을 설명한다.<span class="references"> <a href="#source-4" aria-label="출처 4">[4]</a> <a href="#source-1" aria-label="출처 1">[1]</a></span></td><td><p>기술 동작·사용자 불편·운영 책임 사이의 선택을 제품 설계와 지표에 연결해야 하는 맥락이다. 자동화 수준만으로 제품 성공을 설명하기 어렵다.</p><p class="muted context-uncertainty">미확인: 이 사례의 담당자가 해당 PM이라는 근거는 없다. 특정 모델·평가지표·목표치를 필수 요건으로 추가하지 않는다.</p></td></tr><tr><td>AICC 혁신금융서비스 지정 자료의 부가조건에는 생성형 AI·SaaS 관련 보안 활동, 개인신용정보 처리 방지와 소비자 보호·위험관리가 포함된다.<span class="references"> <a href="#source-2" aria-label="출처 2">[2]</a> <a href="#source-1" aria-label="출처 1">[1]</a></span></td><td><p>JD의 기술/비즈니스/규제 요구 이해는 제품 동작과 운영 조건을 함께 설계해야 하는 실제 금융 AI 맥락에 연결된다.</p><p class="muted context-uncertainty">미확인: AICC 지정조건을 모든 AI 제품에 동일 적용하거나 이 직무에 법률 해석 책임이 전부 있다고 단정하지 않는다.</p></td></tr></tbody></table></section><section aria-labelledby="sources-heading"><h2 id="sources-heading">출처</h2><ol class="sources"><li id="source-1"><a href="https://toss.im/career/job-detail?job_id=7611090003&amp;company=%ED%86%A0%EC%8A%A4%EB%B1%85%ED%81%AC" rel="noopener noreferrer">토스뱅크 Product Manager (LLM) 공식 채용 공고</a><span class="source-url">https://toss.im/career/job-detail?job_id=7611090003&amp;company=%ED%86%A0%EC%8A%A4%EB%B1%85%ED%81%AC</span><p class="muted">토스 공식 채용 자료 · 2026-10-15 확인</p></li><li id="source-2"><a href="https://sandbox.fintech.or.kr/business/enterprise.do?id=830&amp;lang=ko" rel="noopener noreferrer">AICC 혁신금융서비스 지정사례</a><span class="source-url">https://sandbox.fintech.or.kr/business/enterprise.do?id=830&amp;lang=ko</span><p class="muted">기존 기업 보고서의 법인 사실·출처 재사용. 자료일 2025-12-17; 확인일 2026-10-15</p></li><li id="source-3"><a href="https://tossbankai.oopy.io/" rel="noopener noreferrer">토스뱅크 AI/ML 직군 대규모 채용</a><span class="source-url">https://tossbankai.oopy.io/</span><p class="muted">기존 기업 보고서의 법인 사실·출처 재사용. 확인일 2026-10-15</p></li><li id="source-4"><a href="https://toss.tech/article/28229" rel="noopener noreferrer">토스뱅크가 AI로 보안과 효율도 챙기는 방법</a><span class="source-url">https://toss.tech/article/28229</span><p class="muted">기존 기업 보고서의 법인 사실·출처 재사용. 확인일 2026-10-15</p></li></ol></section>
+</main>
+<script>
+(function () {
+  'use strict';
+  var nav = document.querySelector('.tab-nav');
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-tab]'));
+  var panels = tabs.map(function (tab) { return document.getElementById(tab.getAttribute('href').slice(1)); });
+  if (!nav || tabs.length !== 4 || panels.some(function (panel) { return !panel; })) return;
+  function activate(index, focus, resetScroll) {
+    tabs.forEach(function (tab, i) {
+      tab.setAttribute('aria-selected', String(i === index));
+      tab.tabIndex = i === index ? 0 : -1;
+      panels[i].hidden = i !== index;
+    });
+    if (focus) tabs[index].focus();
+    // Only deliberate tab selection resets reading position; hash/history restoration stays native.
+    if (resetScroll) window.scrollTo(0, 0);
+  }
+  nav.setAttribute('role', 'tablist');
+  tabs.forEach(function (tab, index) {
+    tab.setAttribute('role', 'tab');
+    tab.setAttribute('aria-controls', panels[index].id);
+    panels[index].setAttribute('role', 'tabpanel');
+    panels[index].tabIndex = 0;
+    tab.addEventListener('click', function (event) {
+      event.preventDefault();
+      activate(index, false, true);
+      if (window.history && window.history.replaceState) window.history.replaceState(null, '', '#' + panels[index].id);
+    });
+    tab.addEventListener('keydown', function (event) {
+      var next = index;
+      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+      else if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = tabs.length - 1;
+      else if (event.key === ' ' || event.key === 'Enter') next = index;
+      else return;
+      event.preventDefault();
+      activate(next, true, true);
+    });
+  });
+  function activateHash() {
+    if (window.location.hash === "#summary") { activate(0, false); return; }
+    var index = panels.findIndex(function (panel) { return '#' + panel.id === window.location.hash; });
+    if (index >= 0) activate(index, false);
+  }
+  activate(0, false);
+  activateHash();
+  window.addEventListener('hashchange', activateHash);
+}());
+</script>
+</body>
+</html>
+
+
